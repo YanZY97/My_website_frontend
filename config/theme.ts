@@ -5,12 +5,12 @@ export default {
   "@primary-color": purple.primary,
 
   // layout
-  // "@layout-header-background": "#120338",
+  "@layout-header-background": "#0000",
   "@layout-header-height": "48px",
   "@layout-header-padding": "0",
 
   // menu
-
+  "@menu-bg": "#fffffff1",
   // btn
 
   // calendar

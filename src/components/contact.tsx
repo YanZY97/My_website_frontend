@@ -2,7 +2,6 @@ import React from 'react'
 import globalstyles from './styles/index.less'
 import { createFromIconfontCN } from '@ant-design/icons'
 import { Tooltip, Popover, Typography } from 'antd'
-import { Link } from 'umi'
 import qq from '../assets/imgs/qq.png'
 import wechat from '../assets/imgs/wechat.png'
 import music from '../assets/imgs/music.png'
@@ -23,10 +22,10 @@ const Contact = () => (
     <Tooltip title="Github">
       <IconFont type="icon-github" className={globalstyles.icon} onClick={() => handleClick("https://github.com/YanZY97")} />
     </Tooltip>
-    <Popover content={ <img src={qq} width="120px" /> } color="#000000cc" >
+    <Popover content={ <img src={qq} width="140px" /> } color="#000000cc" >
       <IconFont type="icon-qq" className={globalstyles.icon} />
     </Popover>
-    <Popover content={ <img src={wechat} width="120px" /> } color="#000000cc" >
+    <Popover content={ <img src={wechat} width="140px" /> } color="#000000cc" >
       <IconFont type="icon-wechat" className={globalstyles.icon} />
     </Popover>
     <Tooltip title={<Text copyable style={{ color: 'white' }}>1835752347@qq.com </Text>}>
@@ -36,7 +35,7 @@ const Contact = () => (
       <IconFont type="icon-steam" className={globalstyles.icon} />
     </Tooltip>
     <br/>
-    <Popover content={ <img src={music} width="120px" /> } color="#000000cc" >
+    <Popover content={ <img src={music} width="140px" /> } color="#000000cc" >
       <IconFont type="icon-netease-cloud-music-fill" className={globalstyles.icon} />
     </Popover>
     <Tooltip title="Douban">
@@ -46,7 +45,7 @@ const Contact = () => (
       <IconFont type="icon-resume" className={globalstyles.icon} />
     </Tooltip>
     <Tooltip title="more">
-      <Link to="/about"><IconFont type="icon-more-copy-copy" className={globalstyles.icon}/></Link>
+      <IconFont type="icon-more-copy-copy" className={globalstyles.icon} onClick={() => {window.location.href="/about"}} />
     </Tooltip>
   </div>
 )
