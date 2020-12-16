@@ -1,5 +1,6 @@
 import React from 'react'
-import { Layout, Menu, Avatar, Badge, Button, Col, Row } from 'antd'
+import { Layout, Menu, Avatar, Badge, Button, Col, Row, BackTop } from 'antd'
+import { Contact, CalendarSpan, LikeMe, BulletinBoard } from '@/components/components'
 import { Link } from 'umi'
 import { HomeTwoTone, FileTextTwoTone, ExperimentTwoTone, MessageTwoTone, HeartTwoTone, IdcardTwoTone, UserOutlined, GithubOutlined } from '@ant-design/icons'
 import styles from './index.less'
@@ -18,7 +19,7 @@ function BasicLayout(props: { location: any; children: React.ReactNode; }) {
         <div className={styles.user}>
           <Button type="primary" size="small">登录</Button>&nbsp;&nbsp;&nbsp;
           <Button type="default" size="small">注册</Button>&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href=""><GithubOutlined className={styles.githubLink} /></a> 
+          <a href="https://github.com/YanZY97/My_website_frontend" target="_blank"><GithubOutlined className={styles.githubLink} /></a> 
         </div>
         <div className={styles.user} style={{ display: "none" }}>
           <Badge count={0}>
@@ -49,27 +50,27 @@ function BasicLayout(props: { location: any; children: React.ReactNode; }) {
           <Col span={5} style={{ marginLeft: '12px' }}>
             <Row>
               <Col span={24} className={styles.sidetools}>
-
+                <Contact />
               </Col>
               <Col span={24} className={styles.sidetools}>
-
+                <CalendarSpan/>
               </Col>
               <Col span={24} className={styles.sidetools}>
-
+                <LikeMe/>
               </Col>
               <Col span={24} className={styles.sidetools}>
-
+                <BulletinBoard/>
               </Col>
             </Row>
           </Col>
         </Row>
-          
       </Content>
       <Footer className={styles.footer}>
         <p>2020 </p>
         <div className={styles.divider}></div>
         <p>Made with <img src={heartImg} style={{height: "20px"}} /> by Hal</p>
       </Footer>
+      <BackTop />
     </Layout>
   );
 }

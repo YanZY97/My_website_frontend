@@ -12,4 +12,7 @@ export default {
   // menu
 
   // btn
+
+  // calendar
+  "@calendar-bg": "#ffffff88",
 }
