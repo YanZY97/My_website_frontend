@@ -111,7 +111,12 @@ function BasicLayout(props: { location: any; children: React.ReactNode }) {
                 <CalendarSpan />
               </Col>
               <Col span={24} className={styles.sidetools}>
-                <LikeMe />
+                <LikeMe
+                  onClick={() => {
+                    console.log(1);
+                  }}
+                  count={0}
+                />
               </Col>
               <Col span={24} className={styles.sidetools}>
                 <BulletinBoard />

@@ -1,0 +1,39 @@
+@import '../../global.less';
+
+.text {
+  padding-top: 8px;
+}
+
+.heart {
+  margin: -20px auto;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  background-image: url('../../assets/imgs/heart02.png');
+  background-position: left;
+}
+.heart1 {
+  margin: -23px auto;
+  animation-timing-function: steps(28);
+  animation-name: heart-burst;
+  animation-duration: 0.8s;
+  animation-iteration-count: 1;
+  display: inline-block;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heart-burst {
+  0% {
+    background-position: left;
+  }
+
+  100% {
+    background-position: right;
+  }
+}
+
+.font {
+  font-size: xx-large;
+  font-family: comic-sans-ms;
+  color: red;
+}
