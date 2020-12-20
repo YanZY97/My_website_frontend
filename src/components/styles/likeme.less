@@ -5,7 +5,7 @@
 }
 
 .heart {
-  margin: -20px auto;
+  margin: -23px auto -17px;
   height: 100px;
   width: 100px;
   cursor: pointer;
@@ -21,6 +21,12 @@
   display: inline-block;
   animation-fill-mode: forwards;
 }
+.heart2 {
+  margin: -23px auto -17px;
+  animation-name: heart-beat;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+}
 
 @keyframes heart-burst {
   0% {
@@ -29,6 +35,21 @@
 
   100% {
     background-position: right;
+  }
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(0.95);
   }
 }
 

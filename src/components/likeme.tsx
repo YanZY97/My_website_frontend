@@ -8,7 +8,7 @@ interface Props {
 }
 
 interface isState {
-  action: boolean;
+  action: number;
   countState: number;
 }
 
@@ -16,31 +16,36 @@ class LikeMe extends React.Component<Props, isState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      action: false,
+      action: 0,
       countState: props.count,
     };
   }
 
   HandleClick = async (onClick: () => Promise<number>) => {
+    this.setState({ action: 2 });
     const count = await onClick();
-    console.log(count);
     this.setState({ countState: count });
     this.animate();
   };
 
   animate = () => {
-    if (this.state.action) {
-      this.setState({ action: false });
+    if (this.state.action === 1) {
+      this.setState({ action: 0 });
       setTimeout(() => {
-        this.setState({ action: true });
+        this.setState({ action: 1 });
       }, 10);
     } else {
-      this.setState({ action: true });
+      this.setState({ action: 1 });
     }
   };
 
   render() {
     const { onClick, count } = this.props;
+    const actionType: { [key: number]: string } = {
+      0: `${styles.heart}`,
+      1: `${styles.heart} ${styles.heart1}`,
+      2: `${styles.heart} ${styles.heart2}`,
+    };
 
     return (
       <div className={globalstyles.contact}>
@@ -48,9 +53,7 @@ class LikeMe extends React.Component<Props, isState> {
           <h1 className={styles.font}>Do You Like Me?</h1>
         </div>
         <div
-          className={`${styles.heart} ${
-            this.state.action ? styles.heart1 : null
-          }`}
+          className={actionType[this.state.action]}
           onClick={() => this.HandleClick(onClick)}
         ></div>
         <div className={styles.text}>
