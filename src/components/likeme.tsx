@@ -1,15 +1,15 @@
 import React from 'react';
 import globalstyles from './styles/index.less';
 import styles from './styles/likeme.less';
-import heartImg from '../assets/imgs/heart.png';
 
 interface Props {
-  onClick: () => void;
+  onClick: () => Promise<number>;
   count: number;
 }
 
 interface isState {
   action: boolean;
+  countState: number;
 }
 
 class LikeMe extends React.Component<Props, isState> {
@@ -17,17 +17,23 @@ class LikeMe extends React.Component<Props, isState> {
     super(props);
     this.state = {
       action: false,
+      countState: props.count,
     };
   }
 
-  HandleClick = (onClick: () => void) => {
-    onClick();
+  HandleClick = async (onClick: () => Promise<number>) => {
+    const count = await onClick();
+    console.log(count);
+    this.setState({ countState: count });
     this.animate();
   };
 
   animate = () => {
     if (this.state.action) {
       this.setState({ action: false });
+      setTimeout(() => {
+        this.setState({ action: true });
+      }, 10);
     } else {
       this.setState({ action: true });
     }
@@ -49,7 +55,7 @@ class LikeMe extends React.Component<Props, isState> {
         ></div>
         <div className={styles.text}>
           <h1 className={styles.font} style={{ paddingBottom: '16px' }}>
-            {count}
+            {this.state.countState}
           </h1>
         </div>
       </div>

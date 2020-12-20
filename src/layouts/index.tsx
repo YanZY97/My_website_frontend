@@ -23,6 +23,19 @@ import theme from '../../config/theme';
 import heartImg from '../assets/imgs/heart.png';
 import logoImg from '../assets/imgs/logo.png';
 
+function a() {
+  return true;
+}
+
+async function myFun(ms: number) {
+  let r = await new Promise<void>(res => {
+    setTimeout(() => {
+      res();
+    }, ms);
+  });
+  return a();
+}
+
 const { Header, Content, Footer } = Layout;
 function BasicLayout(props: { location: any; children: React.ReactNode }) {
   const pathname = props.location.pathname;
@@ -112,10 +125,12 @@ function BasicLayout(props: { location: any; children: React.ReactNode }) {
               </Col>
               <Col span={24} className={styles.sidetools}>
                 <LikeMe
-                  onClick={() => {
-                    console.log(1);
-                  }}
-                  count={0}
+                  onClick={() =>
+                    myFun(1000).then(() => {
+                      return 1;
+                    })
+                  }
+                  count={5}
                 />
               </Col>
               <Col span={24} className={styles.sidetools}>
