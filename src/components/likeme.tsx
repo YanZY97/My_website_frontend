@@ -3,13 +3,12 @@ import globalstyles from './styles/index.less';
 import styles from './styles/likeme.less';
 
 interface Props {
-  onClick: () => Promise<number>;
+  onClick: () => void;
   count: number;
 }
 
 interface isState {
   action: number;
-  countState: number;
 }
 
 class LikeMe extends React.Component<Props, isState> {
@@ -17,14 +16,12 @@ class LikeMe extends React.Component<Props, isState> {
     super(props);
     this.state = {
       action: 0,
-      countState: props.count,
     };
   }
 
-  HandleClick = async (onClick: () => Promise<number>) => {
+  HandleClick = async (onClick: () => void) => {
     this.setState({ action: 2 });
-    const count = await onClick();
-    this.setState({ countState: count });
+    await onClick();
     this.animate();
   };
 
@@ -40,7 +37,7 @@ class LikeMe extends React.Component<Props, isState> {
   };
 
   render() {
-    const { onClick, count } = this.props;
+    const { onClick } = this.props;
     const actionType: { [key: number]: string } = {
       0: `${styles.heart}`,
       1: `${styles.heart} ${styles.heart1}`,
@@ -58,7 +55,7 @@ class LikeMe extends React.Component<Props, isState> {
         ></div>
         <div className={styles.text}>
           <h1 className={styles.font} style={{ paddingBottom: '16px' }}>
-            {this.state.countState}
+            {this.props.count}
           </h1>
         </div>
       </div>
