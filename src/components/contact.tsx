@@ -18,7 +18,7 @@ const handleClick = (url: string) => {
 };
 
 const Contact = () => (
-  <div className={globalstyles.contact}>
+  <div className={globalstyles.sidetool}>
     <Tooltip title="Github">
       <IconFont
         type="icon-github"

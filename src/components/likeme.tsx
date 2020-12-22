@@ -48,7 +48,7 @@ class LikeMe extends React.Component<Props, isState> {
     };
 
     return (
-      <div className={globalstyles.contact}>
+      <div className={globalstyles.sidetool}>
         <div className={styles.text}>
           <h1 className={styles.font}>Do You Like Me?</h1>
         </div>
