@@ -1,10 +1,8 @@
-import React from 'react'
-import globalstyles from './styles/index.less'
+import React from 'react';
+import globalstyles from './styles/index.less';
 
 const BulletinBoard = () => (
-  <div className={globalstyles.contact}>
-    BulletinBoard
-  </div>
-)
+  <div className={globalstyles.sidetool}>BulletinBoard</div>
+);
 
-export default BulletinBoard
+export default BulletinBoard;

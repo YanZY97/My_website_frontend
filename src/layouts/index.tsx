@@ -1,4 +1,5 @@
 import React from 'react';
+import request from 'umi-request';
 import { Layout, Menu, Avatar, Badge, Button, Col, Row, BackTop } from 'antd';
 import {
   Contact,
@@ -22,19 +23,6 @@ import theme from '../../config/theme';
 
 import heartImg from '../assets/imgs/heart.png';
 import logoImg from '../assets/imgs/logo.png';
-
-function a() {
-  return true;
-}
-
-async function myFun(ms: number) {
-  let r = await new Promise<void>(res => {
-    setTimeout(() => {
-      res();
-    }, ms);
-  });
-  return a();
-}
 
 const { Header, Content, Footer } = Layout;
 function BasicLayout(props: { location: any; children: React.ReactNode }) {
@@ -126,11 +114,17 @@ function BasicLayout(props: { location: any; children: React.ReactNode }) {
               <Col span={24} className={styles.sidetools}>
                 <LikeMe
                   onClick={() =>
-                    myFun(1000).then(() => {
-                      return 1;
-                    })
+                    request
+                      .post('/api/tools/like/')
+                      .then(response => {
+                        console.log(response);
+                        return response;
+                      })
+                      .catch(error => {
+                        console.log(error);
+                      })
                   }
-                  count={5}
+                  count={0}
                 />
               </Col>
               <Col span={24} className={styles.sidetools}>
