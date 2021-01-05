@@ -6,6 +6,8 @@ import {
   CalendarSpan,
   LikeMe,
   BulletinBoard,
+  Login,
+  Register,
 } from '@/components/components';
 import { Link } from 'umi';
 import {
@@ -41,13 +43,12 @@ class BasicLayout extends React.Component<Props, isState> {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getLikes();
   }
 
   getLikes = () => {
     request.get('/api/tools/like/').then(response => {
-      console.log(response);
       this.setState({ count: response });
       return response;
     });
@@ -63,13 +64,9 @@ class BasicLayout extends React.Component<Props, isState> {
             <img src={logoImg} style={{ height: '30px' }} /> qwer
           </div>
           <div className={styles.user}>
-            <Button type="primary" size="small">
-              登录
-            </Button>
+            <Login />
             &nbsp;&nbsp;&nbsp;
-            <Button type="default" size="small">
-              注册
-            </Button>
+            <Register />
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a
               href="https://github.com/YanZY97/My_website_frontend"

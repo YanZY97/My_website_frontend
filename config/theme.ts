@@ -30,5 +30,5 @@ export default {
   // btn
 
   // calendar
-  '@calendar-bg': '#ffffff88',
+  // '@calendar-bg': '#ffffff88',
 };
