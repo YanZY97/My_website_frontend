@@ -3,7 +3,11 @@ import request from 'umi-request';
 import { Button, Modal, Form, Checkbox, Input, message } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { connect, UserModelState, ConnectProps, withRouter } from 'umi';
+import { connect, UserModelState, Dispatch } from 'umi';
+
+interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
+  dispatch?: Dispatch;
+}
 
 interface isProps extends ConnectProps {
   user: UserModelState;
