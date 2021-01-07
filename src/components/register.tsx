@@ -13,6 +13,10 @@ import {
 import { FormInstance } from 'antd/lib/form';
 import request from 'umi-request';
 
+interface isProps {
+  display?: boolean;
+}
+
 interface isState {
   loading: boolean;
   visible: boolean;
@@ -20,8 +24,12 @@ interface isState {
   cooldown: number;
 }
 
-class Register extends React.Component<any, isState> {
-  constructor(props: any) {
+class Register extends React.Component<isProps, isState> {
+  static defaultProps = {
+    display: true,
+  };
+
+  constructor(props: isProps) {
     super(props);
     this.state = {
       loading: false,
@@ -132,12 +140,19 @@ class Register extends React.Component<any, isState> {
 
     return (
       <>
-        <Button type="default" size="small" onClick={this.showModal}>
+        <Button
+          type="default"
+          size="small"
+          onClick={this.showModal}
+          style={
+            this.props.display ? { display: 'inline' } : { display: 'none' }
+          }
+        >
           注册
         </Button>
         <Modal
           visible={visible}
-          title="注册"
+          title={'注册（' + '*' + '为必填项）'}
           onCancel={this.handleCancel}
           onOk={this.handleOk}
           footer={null}

@@ -6,8 +6,7 @@ import {
   CalendarSpan,
   LikeMe,
   BulletinBoard,
-  Login,
-  Register,
+  User,
 } from '@/components/components';
 import { Link } from 'umi';
 import {
@@ -64,10 +63,7 @@ class BasicLayout extends React.Component<Props, isState> {
             <img src={logoImg} style={{ height: '30px' }} /> qwer
           </div>
           <div className={styles.user}>
-            <Login />
-            &nbsp;&nbsp;&nbsp;
-            <Register />
-            &nbsp;&nbsp;&nbsp;&nbsp;
+            <User />
             <a
               href="https://github.com/YanZY97/My_website_frontend"
               target="_blank"
@@ -138,6 +134,9 @@ class BasicLayout extends React.Component<Props, isState> {
                   <CalendarSpan />
                 </Col>
                 <Col span={24} className={styles.sidetools}>
+                  <BulletinBoard />
+                </Col>
+                <Col span={24} className={styles.sidetools}>
                   <LikeMe
                     onClick={() =>
                       request
@@ -152,9 +151,6 @@ class BasicLayout extends React.Component<Props, isState> {
                     }
                     count={this.state.count}
                   />
-                </Col>
-                <Col span={24} className={styles.sidetools}>
-                  <BulletinBoard />
                 </Col>
               </Row>
             </Col>
