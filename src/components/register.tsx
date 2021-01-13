@@ -11,7 +11,7 @@ import {
   DatePicker,
 } from 'antd';
 import { FormInstance } from 'antd/lib/form';
-import request from 'umi-request';
+import { request } from 'umi';
 
 interface isProps {
   display?: boolean;
@@ -64,10 +64,10 @@ class Register extends React.Component<isProps, isState> {
   sendCaptcha = async () => {
     const value = this.formRef.current?.getFieldValue('email');
     const data = { email: value };
-    await request
-      .post('/api/user/send_captcha/', {
-        data: data,
-      })
+    await request('/api/user/send_captcha/', {
+      method: 'post',
+      data: data,
+    })
       .then(response => {
         message.success(response);
         let cooldown = this.state.cooldown;
@@ -95,10 +95,10 @@ class Register extends React.Component<isProps, isState> {
       const value = await this.formRef.current?.validateFields();
       console.log(value);
       this.setState({ loading: true });
-      await request
-        .post('/api/user/register/', {
-          data: value,
-        })
+      await request('/api/user/register/', {
+        method: 'post',
+        data: value,
+      })
         .then(response => {
           this.setState({ loading: false, visible: false });
           message.success(response);

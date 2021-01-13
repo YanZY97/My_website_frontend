@@ -3,6 +3,7 @@ import { Effect, Reducer } from 'umi';
 export interface UserModelState {
   username: string;
   isLogin: boolean;
+  avatar: string;
 }
 
 export interface UserModelType {
@@ -22,6 +23,7 @@ const UserModel: UserModelType = {
   state: {
     username: 'user',
     isLogin: false,
+    avatar: '',
   },
 
   effects: {

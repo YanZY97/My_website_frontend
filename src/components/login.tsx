@@ -1,5 +1,5 @@
 import React from 'react';
-import request from 'umi-request';
+import { request } from 'umi';
 import { Button, Modal, Form, Checkbox, Input, message } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -51,31 +51,33 @@ class Login extends React.Component<isProps, isState> {
       const remember = this.formRef.current?.getFieldValue('remember');
       const { dispatch } = this.props;
       this.setState({ loading: true });
-      await request
-        .post('/api/user/login/', {
-          data: value,
-        })
-        .then(response => {
-          this.setState({ loading: false, visible: false });
-          message.success('登录成功');
-          if (remember) {
-            localStorage.setItem('username', response.username);
-            localStorage.setItem('refresh', response.refresh);
-            localStorage.setItem('access', response.access);
-          } else {
-            sessionStorage.setItem('username', response.username);
-            sessionStorage.setItem('refresh', response.refresh);
-            sessionStorage.setItem('access', response.access);
-          }
-          dispatch!({
-            type: 'user/save',
-            payload: {
-              isLogin: true,
-              username: response.username,
-            },
-          });
-        })
-        .catch(error => {
+      await request('/api/user/login/', {
+        method: 'post',
+        data: value,
+      })
+        .then(
+          (response: { username: string; refresh: string; access: string }) => {
+            this.setState({ loading: false, visible: false });
+            message.success('登录成功');
+            if (remember) {
+              localStorage.setItem('username', response.username);
+              localStorage.setItem('refresh', response.refresh);
+              localStorage.setItem('access', response.access);
+            } else {
+              sessionStorage.setItem('username', response.username);
+              sessionStorage.setItem('refresh', response.refresh);
+              sessionStorage.setItem('access', response.access);
+            }
+            dispatch!({
+              type: 'user/save',
+              payload: {
+                isLogin: true,
+                username: response.username,
+              },
+            });
+          },
+        )
+        .catch((error: any) => {
           console.log(error);
           this.setState({ loading: false });
           message.error('登录失败,用户名或密码错误');

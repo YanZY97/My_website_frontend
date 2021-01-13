@@ -1,6 +1,5 @@
 import React from 'react';
-import request from 'umi-request';
-import { Layout, Menu, Avatar, Badge, Button, Col, Row, BackTop } from 'antd';
+import { Layout, Menu, Avatar, Col, Row, BackTop } from 'antd';
 import {
   Contact,
   CalendarSpan,
@@ -8,7 +7,7 @@ import {
   BulletinBoard,
   User,
 } from '@/components/components';
-import { Link } from 'umi';
+import { Link, request } from 'umi';
 import {
   HomeTwoTone,
   FileTextTwoTone,
@@ -16,14 +15,13 @@ import {
   MessageTwoTone,
   HeartTwoTone,
   IdcardTwoTone,
-  UserOutlined,
-  GithubOutlined,
 } from '@ant-design/icons';
 import styles from './index.less';
 import theme from '../../config/theme';
 
 import heartImg from '../assets/imgs/heart.png';
 import logoImg from '../assets/imgs/logo.png';
+import githubImg from '../assets/imgs/github.png';
 
 interface Props {
   location: any;
@@ -44,10 +42,27 @@ class BasicLayout extends React.Component<Props, isState> {
 
   componentDidMount() {
     this.getLikes();
+    this.refreshAccess();
+  }
+
+  refreshAccess() {
+    const refresh = localStorage.getItem('refresh');
+    if (refresh) {
+      request('/api/user/refresh/', {
+        method: 'post',
+        data: {
+          refresh: refresh,
+        },
+      }).then(response => {
+        localStorage.setItem('access', response.access);
+      });
+    }
   }
 
   getLikes = () => {
-    request.get('/api/tools/like/').then(response => {
+    request('/api/tools/like/', {
+      method: 'get',
+    }).then(response => {
       this.setState({ count: response });
       return response;
     });
@@ -68,13 +83,12 @@ class BasicLayout extends React.Component<Props, isState> {
               href="https://github.com/YanZY97/My_website_frontend"
               target="_blank"
             >
-              <GithubOutlined className={styles.githubLink} />
+              <Avatar
+                size={28}
+                src={githubImg}
+                className={styles.githubLink}
+              ></Avatar>
             </a>
-          </div>
-          <div className={styles.user} style={{ display: 'none' }}>
-            <Badge count={0}>
-              <Avatar icon={<UserOutlined />} />
-            </Badge>
           </div>
           <Menu
             theme="light"
@@ -139,8 +153,9 @@ class BasicLayout extends React.Component<Props, isState> {
                 <Col span={24} className={styles.sidetools}>
                   <LikeMe
                     onClick={() =>
-                      request
-                        .post('/api/tools/like/')
+                      request('/api/tools/like/', {
+                        method: 'post',
+                      })
                         .then(response => {
                           console.log(response);
                           this.setState({ count: response });
