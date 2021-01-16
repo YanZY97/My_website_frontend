@@ -12,6 +12,7 @@ import {
 } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 import { request } from 'umi';
+import UploadAvatar from './uploadAvatar';
 
 interface isProps {
   display?: boolean;
@@ -255,6 +256,9 @@ class Register extends React.Component<isProps, isState> {
                   </Button>
                 </Col>
               </Row>
+            </Form.Item>
+            <Form.Item name="avatar" label="上传头像">
+              <UploadAvatar />
             </Form.Item>
             <Form.Item
               name="agreement"
