@@ -9,16 +9,28 @@ import {
   Row,
   Col,
   DatePicker,
+  Upload,
 } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 import { request } from 'umi';
-import UploadAvatar from './uploadAvatar';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+
+function getBase64(
+  img: Blob,
+  callback: (arg0: string | ArrayBuffer | null) => any,
+) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+}
 
 interface isProps {
   display?: boolean;
 }
 
 interface isState {
+  avatarLoading: boolean;
+  avatarUrl: any;
   loading: boolean;
   visible: boolean;
   disableSendCaptcha: boolean;
@@ -33,6 +45,8 @@ class Register extends React.Component<isProps, isState> {
   constructor(props: isProps) {
     super(props);
     this.state = {
+      avatarLoading: false,
+      avatarUrl: '',
       loading: false,
       visible: false,
       disableSendCaptcha: false,
@@ -52,6 +66,34 @@ class Register extends React.Component<isProps, isState> {
     this.setState({
       visible: false,
     });
+  };
+
+  beforeUpload = (file: { type: string; size: number }) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('只能上传 JPG/PNG 格式文件');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('图片文件要小于 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  };
+
+  handleChange = (info: any) => {
+    if (info.file.status === 'uploading') {
+      this.setState({ avatarLoading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      console.log(info.file);
+      getBase64(info.file.originFileObj, avatarUrl =>
+        this.setState({
+          avatarUrl,
+          avatarLoading: false,
+        }),
+      );
+    }
   };
 
   showAgreement = () => {
@@ -93,7 +135,8 @@ class Register extends React.Component<isProps, isState> {
 
   handleOk = async () => {
     try {
-      const value = await this.formRef.current?.validateFields();
+      let value = await this.formRef.current?.validateFields();
+      (value as any).avatar = this.state.avatarUrl;
       console.log(value);
       this.setState({ loading: true });
       await request('/api/user/register/', {
@@ -115,7 +158,7 @@ class Register extends React.Component<isProps, isState> {
   };
 
   render() {
-    const { visible, loading } = this.state;
+    const { visible, loading, avatarLoading, avatarUrl } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -138,6 +181,12 @@ class Register extends React.Component<isProps, isState> {
         },
       },
     };
+    const uploadButton = (
+      <div>
+        {avatarLoading ? <LoadingOutlined /> : <PlusOutlined />}
+        <div style={{ marginTop: 8 }}>Upload</div>
+      </div>
+    );
 
     return (
       <>
@@ -257,8 +306,25 @@ class Register extends React.Component<isProps, isState> {
                 </Col>
               </Row>
             </Form.Item>
-            <Form.Item name="avatar" label="上传头像">
-              <UploadAvatar />
+            <Form.Item
+              name="avatar"
+              label="上传头像"
+              extra="选择2MB内 JPG/PNG图片"
+            >
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                style={{ height: '128px', width: '128px' }}
+                showUploadList={false}
+                beforeUpload={this.beforeUpload}
+                onChange={this.handleChange}
+              >
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="avatar" style={{ width: '100%' }} />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
             </Form.Item>
             <Form.Item
               name="agreement"

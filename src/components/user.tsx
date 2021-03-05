@@ -32,6 +32,7 @@ class User extends React.Component<UserProps, any> {
         payload: {
           isLogin: true,
           username: username,
+          avatar: '/api/media/avatars/' + username + '/avatar.png',
         },
       });
     }
@@ -46,6 +47,7 @@ class User extends React.Component<UserProps, any> {
       payload: {
         isLogin: false,
         username: '',
+        avatar: '',
       },
     });
   };

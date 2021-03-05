@@ -53,19 +53,27 @@ class BasicLayout extends React.Component<Props, isState> {
         data: {
           refresh: refresh,
         },
-      }).then(response => {
-        localStorage.setItem('access', response.access);
-      });
+      })
+        .then(response => {
+          localStorage.setItem('access', response.access);
+        })
+        .catch(error => {
+          console.log(error.data);
+        });
     }
   }
 
   getLikes = () => {
     request('/api/tools/like/', {
       method: 'get',
-    }).then(response => {
-      this.setState({ count: response });
-      return response;
-    });
+    })
+      .then(response => {
+        this.setState({ count: response });
+        return response;
+      })
+      .catch(error => {
+        console.log(error.data);
+      });
   };
 
   render() {
@@ -75,7 +83,7 @@ class BasicLayout extends React.Component<Props, isState> {
       <Layout>
         <Header className={styles.header}>
           <div className={styles.logo}>
-            <img src={logoImg} style={{ height: '30px' }} /> qwer
+            <img src={logoImg} style={{ height: '30px' }} /> <title></title>
           </div>
           <div className={styles.user}>
             <User />
@@ -172,7 +180,7 @@ class BasicLayout extends React.Component<Props, isState> {
           </Row>
         </Content>
         <Footer className={styles.footer}>
-          <p>2020 </p>
+          <p>2021 </p>
           <div className={styles.divider}></div>
           <p>
             Made with <img src={heartImg} style={{ height: '20px' }} /> by Hal

@@ -73,6 +73,8 @@ class Login extends React.Component<isProps, isState> {
               payload: {
                 isLogin: true,
                 username: response.username,
+                avatar:
+                  '/api/media/avatars/' + response.username + '/avatar.png',
               },
             });
           },
