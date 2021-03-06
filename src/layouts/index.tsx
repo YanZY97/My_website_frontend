@@ -105,37 +105,37 @@ class BasicLayout extends React.Component<Props, isState> {
             style={{ lineHeight: '48px' }}
           >
             <Menu.Item key="home">
-              <Link to="home">
+              <Link to="/home">
                 <HomeTwoTone twoToneColor={theme['@primary-color']} />
                 首页
               </Link>
             </Menu.Item>
             <Menu.Item key="blog">
-              <Link to="blog">
+              <Link to="/blog">
                 <FileTextTwoTone twoToneColor={theme['@primary-color']} />
                 博客
               </Link>
             </Menu.Item>
             <Menu.Item key="lab">
-              <Link to="lab">
+              <Link to="/lab">
                 <ExperimentTwoTone twoToneColor={theme['@primary-color']} />
                 实验室
               </Link>
             </Menu.Item>
             <Menu.Item key="message">
-              <Link to="message">
+              <Link to="/message">
                 <MessageTwoTone twoToneColor={theme['@primary-color']} />
                 留言板
               </Link>
             </Menu.Item>
             <Menu.Item key="partner">
-              <Link to="partner">
+              <Link to="/partner">
                 <HeartTwoTone twoToneColor={theme['@primary-color']} />
                 伙伴
               </Link>
             </Menu.Item>
             <Menu.Item key="about">
-              <Link to="about">
+              <Link to="/about">
                 <IdcardTwoTone twoToneColor={theme['@primary-color']} />
                 关于我
               </Link>

@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './blog.less';
+import { connect, BlogModelState, ConnectProps } from 'umi';
+
 import { MarkdownEditor, BolgCard } from '@/components/components';
 import { Button, Pagination } from 'antd';
 
-export default () => {
+interface PageProps extends ConnectProps {
+  blog: BlogModelState;
+}
+
+const Blog: FC<PageProps> = props => {
   const bolgCardList = [];
-  for (let i = 0; i < 10; i++) {
-    bolgCardList.push(<BolgCard />);
+  for (let i = 0; i < props.blog.blogs.length; i++) {
+    bolgCardList.push(<BolgCard data={props.blog.blogs[i]} />);
   }
+
   return (
     <div>
       {bolgCardList}
@@ -15,3 +22,7 @@ export default () => {
     </div>
   );
 };
+
+export default connect(({ blog }: { blog: BlogModelState }) => ({ blog }))(
+  Blog,
+);
