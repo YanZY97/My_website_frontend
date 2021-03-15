@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './blog.less';
 import { connect, BlogModelState, ConnectProps } from 'umi';
 
@@ -10,15 +10,36 @@ interface PageProps extends ConnectProps {
 }
 
 const Blog: FC<PageProps> = props => {
-  const bolgCardList = [];
-  for (let i = 0; i < props.blog.blogs.length; i++) {
-    bolgCardList.push(<BolgCard data={props.blog.blogs[i]} />);
-  }
+  const init = () => {
+    const bolgCardList = [];
+    const end = 10 < props.blog.blogs.length ? 10 : props.blog.blogs.length;
+    for (let i = 0; i < 10; i++) {
+      bolgCardList.push(<BolgCard data={props.blog.blogs[i]} />);
+    }
+    return bolgCardList;
+  };
+
+  const [bolgList, setBlogList] = useState<any>([]);
+
+  const handleChange = (page: number) => {
+    let bolgCardList = [];
+    const _end = 10 + (page - 1) * 10;
+    const end = _end < props.blog.blogs.length ? _end : props.blog.blogs.length;
+    const start = 0 + (page - 1) * 10;
+    for (let k = start; k < end; k++) {
+      bolgCardList.push(<BolgCard data={props.blog.blogs[k]} />);
+    }
+    setBlogList(bolgCardList);
+  };
 
   return (
     <div>
-      {bolgCardList}
-      <Pagination defaultCurrent={1} total={bolgCardList.length} />
+      {bolgList}
+      <Pagination
+        defaultCurrent={1}
+        total={props.blog.blogs.length}
+        onChange={handleChange}
+      />
     </div>
   );
 };

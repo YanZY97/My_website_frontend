@@ -5,7 +5,7 @@ import { Article } from '@/components/components'
 
 export default ({ match }) => {
   return (
-    <div>
+    <div style={{ backgroundColor: "white", height: "100%" }}>
       <Article id={match.params.id} />
     </div>
   );

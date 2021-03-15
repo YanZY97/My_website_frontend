@@ -2,15 +2,9 @@ import React from 'react';
 import globalstyles from './styles/index.less';
 import style from './styles/bolgCard.less';
 import { request, Link } from 'umi';
-import { Avatar, Row, Col, Typography, Tag } from 'antd';
-import {
-  TagsTwoTone,
-  CalendarTwoTone,
-  LikeTwoTone,
-  DatabaseTwoTone,
-  EyeTwoTone,
-  MessageTwoTone,
-} from '@ant-design/icons';
+import { Avatar, Row, Col, Typography } from 'antd';
+
+import { Time, Cls, Tags, Feedbacks } from './candies/components';
 
 const { Paragraph, Text } = Typography;
 
@@ -28,16 +22,10 @@ interface Props {
     time?: string;
     content?: string;
   };
-
-  urlOnClickTag?: string;
-  urlOnClickCls?: string;
-  urlOnClickLike?: string;
 }
 
 class BlogCard extends React.Component<Props, any> {
-  static defaultProps = {
-    urlOnClickDetail: '/api/blog/getblog/',
-  };
+  static defaultProps = {};
 
   constructor(props: Props) {
     super(props);
@@ -45,14 +33,6 @@ class BlogCard extends React.Component<Props, any> {
 
   render() {
     const { tags } = this.props.data;
-    const taglist = [];
-    for (let i = 0; i < tags!.length; i++) {
-      taglist.push(
-        <Tag color="magenta" style={{ cursor: 'pointer' }}>
-          {tags![i]}
-        </Tag>,
-      );
-    }
     return (
       <div className={globalstyles.articlecard}>
         <Row gutter={8}>
@@ -87,41 +67,22 @@ class BlogCard extends React.Component<Props, any> {
         </Row>
         <Row gutter={16} style={{ margin: '0 15px 0px 15px' }}>
           <Col span={16}>
-            <div className={style.tags}>
-              <CalendarTwoTone twoToneColor="#0e0aff" />
-              &nbsp;
-              <span className={style.time}>{this.props.data.time}</span>
+            <div className={style.leftspan}>
+              <Time time={this.props.data.time!} />
               &nbsp;&nbsp;&nbsp;
-              <DatabaseTwoTone twoToneColor="#55bd00" />
-              &nbsp;
-              <span className={style.clicktext}>{this.props.data.cls}</span>
+              <Cls cls={this.props.data.cls!} />
               &nbsp;&nbsp;&nbsp;
-              <TagsTwoTone twoToneColor="#e80285" />
-              &nbsp;
-              {taglist}
+              <Tags tags={tags!} />
             </div>
           </Col>
           <Col span={8} style={{ float: 'right' }}>
-            <div className={style.details}>
-              <EyeTwoTone twoToneColor="#00a344" />
-              &nbsp;
-              <span className={style.time}>{this.props.data.visits}</span>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <MessageTwoTone
-                twoToneColor="#00b8b5"
-                style={{ cursor: 'pointer' }}
+            <div className={style.rightspan}>
+              <Feedbacks
+                visits={this.props.data.visits!}
+                comments={this.props.data.comments!}
+                likes={this.props.data.likes!}
+                id={this.props.data.id!}
               />
-              &nbsp;
-              <span className={style.clicktext}>
-                {this.props.data.comments}
-              </span>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <LikeTwoTone
-                twoToneColor="#ff5c5c"
-                style={{ cursor: 'pointer' }}
-              />
-              &nbsp;
-              <span className={style.clicktext}>{this.props.data.likes}</span>
             </div>
           </Col>
         </Row>

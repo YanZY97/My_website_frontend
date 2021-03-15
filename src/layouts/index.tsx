@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Avatar, Col, Row, BackTop } from 'antd';
+import { Layout, Menu, Avatar, Col, Row, BackTop, Affix } from 'antd';
 import {
   Contact,
   CalendarSpan,
@@ -79,6 +79,7 @@ class BasicLayout extends React.Component<Props, isState> {
   render() {
     const { Header, Content, Footer } = Layout;
     const pathname = this.props.location.pathname;
+
     return (
       <Layout>
         <Header className={styles.header}>
@@ -155,26 +156,28 @@ class BasicLayout extends React.Component<Props, isState> {
                 <Col span={24} className={styles.sidetools}>
                   <CalendarSpan />
                 </Col>
-                <Col span={24} className={styles.sidetools}>
-                  <BulletinBoard />
-                </Col>
-                <Col span={24} className={styles.sidetools}>
-                  <LikeMe
-                    onClick={() =>
-                      request('/api/tools/like/', {
-                        method: 'post',
-                      })
-                        .then(response => {
-                          console.log(response);
-                          this.setState({ count: response });
+                <Affix offsetTop={64} className={styles.sidetools}>
+                  <Col span={24} className={styles.sidetools}>
+                    <BulletinBoard />
+                  </Col>
+                  <Col span={24} className={styles.sidetools}>
+                    <LikeMe
+                      onClick={() =>
+                        request('/api/tools/like/', {
+                          method: 'post',
                         })
-                        .catch(error => {
-                          console.log(error);
-                        })
-                    }
-                    count={this.state.count}
-                  />
-                </Col>
+                          .then(response => {
+                            console.log(response);
+                            this.setState({ count: response });
+                          })
+                          .catch(error => {
+                            console.log(error);
+                          })
+                      }
+                      count={this.state.count}
+                    />
+                  </Col>
+                </Affix>
               </Row>
             </Col>
           </Row>
@@ -186,7 +189,7 @@ class BasicLayout extends React.Component<Props, isState> {
             Made with <img src={heartImg} style={{ height: '20px' }} /> by Hal
           </p>
         </Footer>
-        <BackTop />
+        <BackTop style={{ zIndex: 110 }} />
       </Layout>
     );
   }

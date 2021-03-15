@@ -21,7 +21,7 @@ const UserModel: UserModelType = {
   namespace: 'user',
 
   state: {
-    username: 'user',
+    username: '',
     isLogin: false,
     avatar: '',
   },
