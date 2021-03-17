@@ -58,6 +58,7 @@ class Login extends React.Component<isProps, isState> {
         .then(
           (response: { username: string; refresh: string; access: string }) => {
             this.setState({ loading: false, visible: false });
+            message.destroy();
             message.success('登录成功');
             if (remember) {
               localStorage.setItem('username', response.username);
@@ -68,6 +69,7 @@ class Login extends React.Component<isProps, isState> {
               sessionStorage.setItem('refresh', response.refresh);
               sessionStorage.setItem('access', response.access);
             }
+            location.reload();
             dispatch!({
               type: 'user/save',
               payload: {
@@ -82,6 +84,7 @@ class Login extends React.Component<isProps, isState> {
         .catch((error: any) => {
           console.log(error);
           this.setState({ loading: false });
+          message.destroy();
           message.error('登录失败,用户名或密码错误');
         });
     } catch (errorInfo) {}

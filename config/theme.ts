@@ -26,7 +26,7 @@ export default {
   '@layout-header-padding': '0',
 
   // menu
-  '@menu-bg': '#fffffff0',
+  '@menu-bg': '#ffffffed',
   // btn
 
   // calendar

@@ -71,10 +71,12 @@ class Register extends React.Component<isProps, isState> {
   beforeUpload = (file: { type: string; size: number }) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
+      message.destroy();
       message.error('只能上传 JPG/PNG 格式文件');
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
+      message.destroy();
       message.error('图片文件要小于 2MB!');
     }
     return isJpgOrPng && isLt2M;
@@ -112,6 +114,7 @@ class Register extends React.Component<isProps, isState> {
       data: data,
     })
       .then(response => {
+        message.destroy();
         message.success(response);
         let cooldown = this.state.cooldown;
         this.setState({ cooldown: cooldown--, disableSendCaptcha: true });
@@ -129,6 +132,7 @@ class Register extends React.Component<isProps, isState> {
       })
       .catch(error => {
         console.log(error.data);
+        message.destroy();
         message.warning(error.data);
       });
   };
@@ -145,11 +149,13 @@ class Register extends React.Component<isProps, isState> {
       })
         .then(response => {
           this.setState({ loading: false, visible: false });
+          message.destroy();
           message.success(response);
         })
         .catch(error => {
           console.log(error);
           this.setState({ loading: false });
+          message.destroy();
           message.error(error.data);
         });
     } catch (errorInfo) {

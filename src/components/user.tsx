@@ -50,6 +50,7 @@ class User extends React.Component<UserProps, any> {
         avatar: '',
       },
     });
+    location.reload();
   };
 
   showConfirm = () => {

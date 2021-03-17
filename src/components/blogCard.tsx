@@ -53,7 +53,7 @@ class BlogCard extends React.Component<Props, any> {
             </Link>
           </Col>
         </Row>
-        <Row style={{ margin: '16px 0 8px 0' }}>
+        <Row>
           <Col span={22} offset={1}>
             <Link to={`articles/${this.props.data.id}`}>
               <Paragraph
@@ -65,7 +65,7 @@ class BlogCard extends React.Component<Props, any> {
             </Link>
           </Col>
         </Row>
-        <Row gutter={16} style={{ margin: '0 15px 0px 15px' }}>
+        <Row gutter={16}>
           <Col span={16}>
             <div className={style.leftspan}>
               <Time time={this.props.data.time!} />

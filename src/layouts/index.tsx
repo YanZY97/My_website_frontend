@@ -1,10 +1,11 @@
 import React from 'react';
-import { Layout, Menu, Avatar, Col, Row, BackTop, Affix } from 'antd';
+import { Layout, Menu, Avatar, Col, Row, BackTop, Affix, message } from 'antd';
 import {
   Contact,
   CalendarSpan,
   LikeMe,
   BulletinBoard,
+  AdminTools,
   User,
 } from '@/components/components';
 import { Link, request } from 'umi';
@@ -30,6 +31,8 @@ interface Props {
 
 interface isState {
   count: number;
+  visits: number;
+  permission: boolean;
 }
 
 class BasicLayout extends React.Component<Props, isState> {
@@ -37,12 +40,16 @@ class BasicLayout extends React.Component<Props, isState> {
     super(props);
     this.state = {
       count: 0,
+      visits: 0,
+      permission: false,
     };
   }
 
   componentDidMount() {
     this.getLikes();
     this.refreshAccess();
+    this.getVisits();
+    this.getPermission();
   }
 
   refreshAccess() {
@@ -76,6 +83,34 @@ class BasicLayout extends React.Component<Props, isState> {
       });
   };
 
+  getVisits = () => {
+    request('/api/tools/visit/')
+      .then(response => {
+        this.setState({ visits: response });
+      })
+      .catch(error => {
+        console.log(error.data);
+      });
+  };
+
+  getPermission = () => {
+    request('/api/user/permission_check/', {
+      headers: {
+        Authorization:
+          'Bearer ' +
+          (localStorage.getItem('access') || sessionStorage.getItem('access')),
+      },
+    })
+      .then(response => {
+        this.setState({ permission: true });
+      })
+      .catch(error => {
+        this.setState({ permission: false });
+        message.destroy();
+        return;
+      });
+  };
+
   render() {
     const { Header, Content, Footer } = Layout;
     const pathname = this.props.location.pathname;
@@ -84,7 +119,7 @@ class BasicLayout extends React.Component<Props, isState> {
       <Layout>
         <Header className={styles.header}>
           <div className={styles.logo}>
-            <img src={logoImg} style={{ height: '30px' }} /> <title></title>
+            <img src={logoImg} style={{ height: '30px' }} /> title
           </div>
           <div className={styles.user}>
             <User />
@@ -144,7 +179,7 @@ class BasicLayout extends React.Component<Props, isState> {
           </Menu>
         </Header>
         <Content className={styles.content}>
-          <Row style={{ margin: '20px 0' }}>
+          <Row>
             <Col span={15} offset={2} style={{ marginRight: '12px' }}>
               <div className={styles.children}>{this.props.children}</div>
             </Col>
@@ -177,6 +212,9 @@ class BasicLayout extends React.Component<Props, isState> {
                       count={this.state.count}
                     />
                   </Col>
+                  <Col span={24} className={styles.sidetools}>
+                    <AdminTools isAdmin={this.state.permission} />
+                  </Col>
                 </Affix>
               </Row>
             </Col>
@@ -186,7 +224,10 @@ class BasicLayout extends React.Component<Props, isState> {
           <p>2021 </p>
           <div className={styles.divider}></div>
           <p>
-            Made with <img src={heartImg} style={{ height: '20px' }} /> by Hal
+            Made with <img src={heartImg} style={{ height: '20px' }} /> by Hal{' '}
+            <br />
+            <br />
+            网站已经被访问了&nbsp;{this.state.visits}&nbsp;次
           </p>
         </Footer>
         <BackTop style={{ zIndex: 110 }} />

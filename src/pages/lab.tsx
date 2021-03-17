@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './lab.less';
-import { Button, message } from 'antd';
-import { MarkdownEditor } from '@/components/components';
+import { Button } from 'antd';
 
 const wasmTest = async (url: string) => {
   const env = {
@@ -43,7 +42,6 @@ export default () => {
         <Button type="default" onClick={handleWasmTest}>
           Wasm Test
         </Button>
-        <MarkdownEditor />
       </div>
     </>
   );

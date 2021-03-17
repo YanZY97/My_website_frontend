@@ -4,5 +4,6 @@ export { default as LikeMe } from './likeme';
 export { default as BulletinBoard } from './bulletinBoard';
 export { default as User } from './user';
 export { default as MarkdownEditor } from './markdownEditor/markdownEditor';
-export { default as BolgCard } from './bolgCard';
+export { default as BlogCard } from './blogCard';
 export { default as Article } from './article';
+export { default as AdminTools } from './adminTools';

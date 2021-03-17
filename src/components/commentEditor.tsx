@@ -54,6 +54,7 @@ class CommentEditor extends React.Component<Props, State> {
 
   handleSubmit = () => {
     if (!this.props.user.isLogin) {
+      message.destroy();
       message.warning('登录后才能发表评论');
       return;
     }
@@ -79,6 +80,7 @@ class CommentEditor extends React.Component<Props, State> {
       },
     })
       .then(response => {
+        message.destroy();
         message.success('发布成功');
         this.setState({
           submitting: false,
@@ -87,6 +89,7 @@ class CommentEditor extends React.Component<Props, State> {
         this.HandleRefresh(this.props.handleRefresh);
       })
       .catch(error => {
+        message.destroy();
         console.log(error);
         this.setState({
           submitting: false,

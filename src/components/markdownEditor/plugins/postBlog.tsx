@@ -56,6 +56,7 @@ class PostBlog extends PluginComponent<PostUrl> {
       },
     })
       .then(response => {
+        message.destroy();
         message.success(response.data);
         this.setState({
           showModal: false,
@@ -63,6 +64,7 @@ class PostBlog extends PluginComponent<PostUrl> {
       })
       .catch(error => {
         console.log(error);
+        message.destroy();
         message.error('没有操作权限');
         this.setState({
           showModal: false,

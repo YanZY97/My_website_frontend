@@ -1,8 +1,6 @@
 import React from 'react';
 import MarkdownIt from 'markdown-it';
 import MdEditor, { Plugins } from 'react-markdown-editor-lite';
-import { Button, message } from 'antd';
-import { request } from 'umi';
 import hljs from 'highlight.js';
 import PostBlog from './plugins/postBlog';
 
@@ -20,7 +18,7 @@ MdEditor.use(Plugins.TabInsert, {
 MdEditor.use(PostBlog, {
   url: '/api/blog/postblog/',
 });
-MdEditor.unuse(Plugins.FullScreen);
+// MdEditor.unuse(Plugins.FullScreen);
 
 class MarkdownEditor extends React.Component<isProps, any> {
   mdEditor?: MdEditor = undefined;
