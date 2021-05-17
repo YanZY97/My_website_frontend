@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect, UserModelState, Dispatch } from 'umi';
-import { Avatar, Dropdown, Menu, Modal } from 'antd';
+import { connect, UserModelState, Dispatch, Link } from 'umi';
+import { Avatar, Dropdown, Menu, Modal, Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import Login from './login';
@@ -39,17 +39,8 @@ class User extends React.Component<UserProps, any> {
   }
 
   logout = () => {
-    const { dispatch } = this.props;
     localStorage.clear();
     sessionStorage.clear();
-    dispatch!({
-      type: 'user/save',
-      payload: {
-        isLogin: false,
-        username: '',
-        avatar: '',
-      },
-    });
     location.reload();
   };
 
@@ -75,9 +66,29 @@ class User extends React.Component<UserProps, any> {
     );
     return (
       <span className={style.user}>
-        <Login display={!this.props.user.isLogin} />
+        <Button
+          type="default"
+          size="small"
+          style={
+            this.props.user.isLogin
+              ? { display: 'none' }
+              : { display: 'inline' }
+          }
+        >
+          <Link to="login">登录</Link>
+        </Button>
         &nbsp;&nbsp;&nbsp;
-        <Register display={!this.props.user.isLogin} />
+        <Button
+          type="primary"
+          size="small"
+          style={
+            this.props.user.isLogin
+              ? { display: 'none' }
+              : { display: 'inline' }
+          }
+        >
+          <Link to="register">注册</Link>
+        </Button>
         <Dropdown
           overlay={menu}
           placement="bottomRight"

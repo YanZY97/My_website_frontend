@@ -7,3 +7,5 @@ export { default as MarkdownEditor } from './markdownEditor/markdownEditor';
 export { default as BlogCard } from './blogCard';
 export { default as Article } from './article';
 export { default as AdminTools } from './adminTools';
+export { default as MessageEditor } from './messageEditor';
+export { default as MessageCard } from './messageCard';

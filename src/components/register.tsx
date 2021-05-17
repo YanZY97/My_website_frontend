@@ -12,7 +12,7 @@ import {
   Upload,
 } from 'antd';
 import { FormInstance } from 'antd/lib/form';
-import { request } from 'umi';
+import { request, history, Link } from 'umi';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 function getBase64(
@@ -24,49 +24,31 @@ function getBase64(
   reader.readAsDataURL(img);
 }
 
-interface isProps {
-  display?: boolean;
-}
-
 interface isState {
   avatarLoading: boolean;
   avatarUrl: any;
   loading: boolean;
-  visible: boolean;
   disableSendCaptcha: boolean;
   cooldown: number;
 }
 
-class Register extends React.Component<isProps, isState> {
+class Register extends React.Component<any, isState> {
   static defaultProps = {
     display: true,
   };
 
-  constructor(props: isProps) {
+  constructor(props: any) {
     super(props);
     this.state = {
       avatarLoading: false,
       avatarUrl: '',
       loading: false,
-      visible: false,
       disableSendCaptcha: false,
       cooldown: 60,
     };
   }
 
   formRef = React.createRef<FormInstance>();
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  };
 
   beforeUpload = (file: { type: string; size: number }) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -107,8 +89,8 @@ class Register extends React.Component<isProps, isState> {
   };
 
   sendCaptcha = async () => {
-    const value = this.formRef.current?.getFieldValue('email');
-    const data = { email: value };
+    const value = await this.formRef.current?.validateFields(['email']);
+    const data = { email: value, flag: 'register' };
     await request('/api/user/send_captcha/', {
       method: 'post',
       data: data,
@@ -148,9 +130,10 @@ class Register extends React.Component<isProps, isState> {
         data: value,
       })
         .then(response => {
-          this.setState({ loading: false, visible: false });
+          this.setState({ loading: false });
           message.destroy();
           message.success(response);
+          history.push('/');
         })
         .catch(error => {
           console.log(error);
@@ -164,7 +147,7 @@ class Register extends React.Component<isProps, isState> {
   };
 
   render() {
-    const { visible, loading, avatarLoading, avatarUrl } = this.state;
+    const { loading, avatarLoading, avatarUrl } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -196,22 +179,18 @@ class Register extends React.Component<isProps, isState> {
 
     return (
       <>
-        <Button
-          type="default"
-          size="small"
-          onClick={this.showModal}
-          style={
-            this.props.display ? { display: 'inline' } : { display: 'none' }
-          }
-        >
-          注册
-        </Button>
-        <Modal
-          visible={visible}
-          title={'注册（' + '*' + '为必填项）'}
-          onCancel={this.handleCancel}
-          onOk={this.handleOk}
-          footer={null}
+        <div
+          style={{
+            width: '450px',
+            padding: '50px 28px',
+            backgroundColor: '#ffffffdd',
+            border: '1px solid #c2c2c2',
+            borderRadius: '8px',
+            margin: '0 auto',
+            position: 'relative',
+            top: '50%',
+            transform: 'translateY(-55%)',
+          }}
         >
           <Form
             {...formItemLayout}
@@ -242,7 +221,7 @@ class Register extends React.Component<isProps, isState> {
               rules={[
                 {
                   required: true,
-                  message: 'Please confirm your password!',
+                  message: '请确认你的密码',
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
@@ -272,30 +251,30 @@ class Register extends React.Component<isProps, isState> {
             >
               <Input placeholder="请输入邮箱地址" />
             </Form.Item>
-            <Form.Item name="mobile" label="手机" rules={[{ required: false }]}>
-              <Input style={{ width: '100%' }} />
-            </Form.Item>
-            <Form.Item
-              name="website"
-              label="网站"
-              rules={[{ required: false }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="birthday"
-              label="生日"
-              rules={[{ required: false }]}
-            >
-              <DatePicker format="YYYY-MM-DD" />
-            </Form.Item>
+            {/* <Form.Item name="mobile" label="手机" rules={[{ required: false }]}>
+            <Input style={{ width: '100%' }} />
+          </Form.Item>
+          <Form.Item
+            name="website"
+            label="网站"
+            rules={[{ required: false }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="birthday"
+            label="生日"
+            rules={[{ required: false }]}
+          >
+            <DatePicker format="YYYY-MM-DD" />
+          </Form.Item> */}
             <Form.Item label="验证码" extra="验证码将发送到您的邮箱,10分钟有效">
               <Row gutter={8}>
                 <Col span={12}>
                   <Form.Item
                     name="captcha"
                     noStyle
-                    rules={[{ required: true, message: '请在邮箱接收验证码' }]}
+                    rules={[{ required: true, message: '请输入验证码' }]}
                   >
                     <Input />
                   </Form.Item>
@@ -315,7 +294,7 @@ class Register extends React.Component<isProps, isState> {
             <Form.Item
               name="avatar"
               label="上传头像"
-              extra="选择2MB内 JPG/PNG图片"
+              extra="2MB内 JPG/PNG格式图片"
             >
               <Upload
                 name="avatar"
@@ -358,12 +337,16 @@ class Register extends React.Component<isProps, isState> {
                 htmlType="submit"
                 loading={loading}
                 onClick={this.handleOk}
+                style={{ width: '30%' }}
               >
                 注册
               </Button>
+              <Button type="link" style={{ width: '50%' }}>
+                <Link to="login">去登录</Link>
+              </Button>
             </Form.Item>
           </Form>
-        </Modal>
+        </div>
       </>
     );
   }

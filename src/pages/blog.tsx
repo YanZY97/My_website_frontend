@@ -1,63 +1,63 @@
 import React, { FC, useState } from 'react';
 import styles from './blog.less';
-import { connect, BlogModelState, ConnectProps } from 'umi';
+import { request } from 'umi';
 
 import { BlogCard } from '@/components/components';
 import { Skeleton, Pagination } from 'antd';
 
-interface PageProps extends ConnectProps {
-  blog: BlogModelState;
-}
-
 interface States {
   blogList: any;
+  blogCount: number;
   page: number;
   init: boolean;
 }
 
-class Blog extends React.Component<PageProps, States> {
-  constructor(props: PageProps) {
+class Blog extends React.Component<any, States> {
+  constructor(props: any) {
     super(props);
     this.state = {
       blogList: [],
+      blogCount: 0,
       page: 1,
       init: false,
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: any) {
-    let blogCardList = [];
-    const _end = 10 + (this.state.page - 1) * 10;
-    const end =
-      _end < nextProps.blog.blogs.length ? _end : nextProps.blog.blogs.length;
-    const start = 0 + (this.state.page - 1) * 10;
-    for (let k = start; k < end; k++) {
-      blogCardList.push(<BlogCard data={nextProps.blog.blogs[k]} />);
-    }
-    this.setState({
-      init: true,
-      blogList: blogCardList,
-    });
-    document.body.scrollIntoView();
+  componentDidMount() {
+    this.getBlogs();
+    this.getBlogCount();
   }
 
-  handleChange = (page: number) => {
-    this.setState({
+  getBlogs = async () => {
+    await request('/api/blog/getblog/', {
+      method: 'get',
+      params: { page: this.state.page },
+    }).then(response => {
+      let blogCardList = [];
+      for (let k = 0; k < response.data.length; k++) {
+        blogCardList.push(<BlogCard data={response.data[k]} />);
+      }
+      this.setState({
+        blogList: blogCardList,
+        init: true,
+      });
+    });
+  };
+
+  getBlogCount = async () => {
+    await request('/api/blog/getblogcount/').then(response => {
+      this.setState({
+        blogCount: response.count,
+      });
+    });
+  };
+
+  handleChange = async (page: number) => {
+    await this.setState({
       page: page,
     });
-    let blogCardList = [];
-    const _end = 10 + (page - 1) * 10;
-    const end =
-      _end < this.props.blog.blogs.length ? _end : this.props.blog.blogs.length;
-    const start = 0 + (page - 1) * 10;
-    for (let k = start; k < end; k++) {
-      blogCardList.push(<BlogCard data={this.props.blog.blogs[k]} />);
-    }
-    this.setState({
-      blogList: blogCardList,
-    });
-    document.body.scrollIntoView();
-    return blogCardList;
+    this.getBlogs();
+    this.getBlogCount();
   };
 
   render() {
@@ -91,7 +91,7 @@ class Blog extends React.Component<PageProps, States> {
         {this.state.blogList}
         <Pagination
           defaultCurrent={1}
-          total={this.props.blog.blogs.length}
+          total={this.state.blogCount}
           onChange={this.handleChange}
         />
       </div>,
@@ -101,6 +101,4 @@ class Blog extends React.Component<PageProps, States> {
   }
 }
 
-export default connect(({ blog }: { blog: BlogModelState }) => ({ blog }))(
-  Blog,
-);
+export default Blog;

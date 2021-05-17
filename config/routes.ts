@@ -1,10 +1,26 @@
 export default [
+  // {
+  //   path: '/home',
+  //   component: '@/layouts/home',
+  // },
+  {
+    path: '/login',
+    component: '@/layouts/login',
+  },
+  {
+    path: '/reset-password',
+    component: '@/layouts/resetPassword',
+  },
+  {
+    path: '/register',
+    component: '@/layouts/register',
+  },
   {
     path: '/',
     component: '@/layouts/index',
     routes: [
       { exact: true, path: '/', redirect: 'home' },
-      { exact: true, path: 'home', component: '@/pages/home', title: 'home' },
+      { exact: true, path: 'home', component: '@/layouts/home', title: 'home' },
       { exact: true, path: 'blog', component: '@/pages/blog', title: 'blog' },
       { exact: true, path: 'lab', component: '@/pages/lab', title: 'lab' },
       {

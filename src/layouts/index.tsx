@@ -49,7 +49,7 @@ class BasicLayout extends React.Component<Props, isState> {
     this.getLikes();
     this.refreshAccess();
     this.getVisits();
-    this.getPermission();
+    // this.getPermission();
   }
 
   refreshAccess() {
@@ -106,7 +106,7 @@ class BasicLayout extends React.Component<Props, isState> {
       })
       .catch(error => {
         this.setState({ permission: false });
-        message.destroy();
+        // message.destroy();
         return;
       });
   };
@@ -116,7 +116,7 @@ class BasicLayout extends React.Component<Props, isState> {
     const pathname = this.props.location.pathname;
 
     return (
-      <Layout>
+      <Layout style={{ backgroundColor: '#00000000' }}>
         <Header className={styles.header}>
           <div className={styles.logo}>
             <img src={logoImg} style={{ height: '30px' }} /> title
@@ -224,7 +224,7 @@ class BasicLayout extends React.Component<Props, isState> {
           <p>2021 </p>
           <div className={styles.divider}></div>
           <p>
-            Made with <img src={heartImg} style={{ height: '20px' }} /> by Hal{' '}
+            Made with <img src={heartImg} style={{ height: '20px' }} /> by Y{' '}
             <br />
             <br />
             网站已经被访问了&nbsp;{this.state.visits}&nbsp;次

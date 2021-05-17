@@ -1,6 +1,6 @@
 import React from 'react';
-import { request } from 'umi';
-import { Button, Modal, Form, Checkbox, Input, message } from 'antd';
+import { request, history, Link } from 'umi';
+import { Button, Form, Checkbox, Input, message, Divider } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { connect, UserModelState, Dispatch } from 'umi';
@@ -11,39 +11,21 @@ interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
 
 interface isProps extends ConnectProps {
   user: UserModelState;
-  display?: boolean;
 }
 
 interface isState {
   loading: boolean;
-  visible: boolean;
 }
 
 class Login extends React.Component<isProps, isState> {
-  static defaultProps = {
-    display: true,
-  };
   constructor(props: isProps) {
     super(props);
     this.state = {
       loading: false,
-      visible: false,
     };
   }
 
   formRef = React.createRef<FormInstance>();
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  };
 
   handleOk = async () => {
     try {
@@ -57,7 +39,7 @@ class Login extends React.Component<isProps, isState> {
       })
         .then(
           (response: { username: string; refresh: string; access: string }) => {
-            this.setState({ loading: false, visible: false });
+            this.setState({ loading: false });
             message.destroy();
             message.success('登录成功');
             if (remember) {
@@ -69,7 +51,6 @@ class Login extends React.Component<isProps, isState> {
               sessionStorage.setItem('refresh', response.refresh);
               sessionStorage.setItem('access', response.access);
             }
-            location.reload();
             dispatch!({
               type: 'user/save',
               payload: {
@@ -79,6 +60,7 @@ class Login extends React.Component<isProps, isState> {
                   '/api/media/avatars/' + response.username + '/avatar.png',
               },
             });
+            history.push('/');
           },
         )
         .catch((error: any) => {
@@ -91,25 +73,21 @@ class Login extends React.Component<isProps, isState> {
   };
 
   render() {
-    const { visible, loading } = this.state;
+    const { loading } = this.state;
     return (
       <>
-        <Button
-          type="primary"
-          size="small"
-          onClick={this.showModal}
-          style={
-            this.props.display ? { display: 'inline' } : { display: 'none' }
-          }
-        >
-          登录
-        </Button>
-        <Modal
-          visible={visible}
-          title={'登录'}
-          onCancel={this.handleCancel}
-          footer={null}
-          width={300}
+        <div
+          style={{
+            width: '350px',
+            padding: '50px 28px 12px',
+            backgroundColor: '#ffffffdd',
+            border: '1px solid #c2c2c2',
+            borderRadius: '8px',
+            margin: '0 auto',
+            position: 'relative',
+            top: '36%',
+            transform: 'translateY(-50%)',
+          }}
         >
           <Form
             name="login"
@@ -134,21 +112,35 @@ class Login extends React.Component<isProps, isState> {
             </Form.Item>
             <Form.Item>
               <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>记住我</Checkbox>
+                <Checkbox style={{ display: 'none' }}>记住我</Checkbox>
               </Form.Item>
-              <div style={{ textAlign: 'right', margin: '0 5%' }}>
+              <div style={{ textAlign: 'left', margin: '0' }}>
                 <Button
                   key="submit"
                   type="primary"
                   loading={loading}
                   onClick={this.handleOk}
+                  style={{ width: '100%' }}
                 >
                   登录
                 </Button>
               </div>
             </Form.Item>
+            <div style={{ textAlign: 'center', marginTop: '32px' }}>
+              <a>
+                <Link to="reset-password">忘记密码？</Link>
+              </a>
+              <Divider type="vertical" />
+              <a>
+                <Link to="register"> 现在注册 </Link>
+              </a>
+              <Divider type="vertical" />
+              <a>
+                <Link to="/"> 返回首页 </Link>
+              </a>
+            </div>
           </Form>
-        </Modal>
+        </div>
       </>
     );
   }

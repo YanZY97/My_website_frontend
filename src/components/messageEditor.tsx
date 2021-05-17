@@ -11,7 +11,6 @@ interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
 
 interface Props extends ConnectProps {
   user: UserModelState;
-  id: number;
   submitUrl?: string;
   handleRefresh: () => void;
 }
@@ -19,6 +18,7 @@ interface Props extends ConnectProps {
 interface State {
   submitting: boolean;
   value: string;
+  user: string;
 }
 
 const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
@@ -39,9 +39,9 @@ const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
   </>
 );
 
-class CommentEditor extends React.Component<Props, State> {
+class MessageEditor extends React.Component<Props, State> {
   static defaultProps = {
-    submitUrl: '/api/blog/add_comment/',
+    submitUrl: '/api/message/postmessage/',
   };
 
   constructor(props: Props) {
@@ -49,35 +49,26 @@ class CommentEditor extends React.Component<Props, State> {
     this.state = {
       submitting: false,
       value: '',
+      user: '',
     };
   }
 
   handleSubmit = () => {
-    if (!this.props.user.isLogin) {
-      message.destroy();
-      message.warning('登录后才能发表评论');
-      return;
-    }
-
     if (!this.state.value) {
       message.destroy();
-      message.warning('评论内容不能为空');
+      message.warning('留言内容不能为空');
       return;
     }
 
     this.setState({
+      user: this.props.user.username,
       submitting: true,
     });
 
     request(this.props.submitUrl!, {
       method: 'post',
-      headers: {
-        Authorization:
-          'Bearer ' +
-          (localStorage.getItem('access') || sessionStorage.getItem('access')),
-      },
       data: {
-        articleid: this.props.id,
+        user: this.props.user.username,
         data: this.state.value,
       },
     })
@@ -112,8 +103,8 @@ class CommentEditor extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <div style={{ padding: '2em 4em' }}>
-          <h1>发表评论</h1>
+        <div style={{ padding: '2em 4em', backgroundColor: 'white' }}>
+          <h1>发表留言</h1>
           <Comment
             avatar={
               <Avatar
@@ -141,5 +132,5 @@ class CommentEditor extends React.Component<Props, State> {
 }
 
 export default connect(({ user }: { user: UserModelState }) => ({ user }))(
-  CommentEditor,
+  MessageEditor,
 );
