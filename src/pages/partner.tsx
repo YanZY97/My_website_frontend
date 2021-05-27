@@ -1,10 +1,16 @@
 import React from 'react';
 import styles from './partner.less';
+import { Typography, Divider } from 'antd';
+import { PartnerLinks } from '@/components/components';
+
+const { Title, Paragraph, Text, Link } = Typography;
 
 export default () => {
   return (
-    <div>
-      <h1 className={styles.title}>Page partner</h1>
-    </div>
+    <>
+      <div className={styles.index}>
+        <PartnerLinks />
+      </div>
+    </>
   );
-}
+};

@@ -70,7 +70,6 @@ class Register extends React.Component<any, isState> {
       return;
     }
     if (info.file.status === 'done') {
-      console.log(info.file);
       getBase64(info.file.originFileObj, avatarUrl =>
         this.setState({
           avatarUrl,

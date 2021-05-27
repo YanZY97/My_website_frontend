@@ -6,14 +6,46 @@ export default [
   {
     path: '/login',
     component: '@/layouts/login',
+    title: 'login',
   },
   {
     path: '/reset-password',
     component: '@/layouts/resetPassword',
+    title: 'reset-password',
   },
   {
     path: '/register',
     component: '@/layouts/register',
+    title: 'register',
+  },
+  {
+    path: '/usercenter',
+    component: '@/layouts/usercenter',
+    title: 'usercenter',
+  },
+  {
+    path: '/stuffLogin',
+    component: '@/layouts/stuffLogin',
+    title: 'stuffLogin',
+  },
+  {
+    path: '/admin',
+    component: '@/layouts/admin',
+    routes: [
+      { exact: true, path: '/admin', redirect: 'home' },
+      {
+        exact: true,
+        path: 'home',
+        component: '@/pages/admin/home',
+        title: 'home',
+      },
+      {
+        exact: true,
+        path: 'manage',
+        component: '@/pages/admin/manage',
+        title: 'manage',
+      },
+    ],
   },
   {
     path: '/',
@@ -23,6 +55,12 @@ export default [
       { exact: true, path: 'home', component: '@/layouts/home', title: 'home' },
       { exact: true, path: 'blog', component: '@/pages/blog', title: 'blog' },
       { exact: true, path: 'lab', component: '@/pages/lab', title: 'lab' },
+      {
+        exact: true,
+        path: 'lab/wasm',
+        component: '@/pages/labPages/wasm',
+        title: 'wasm',
+      },
       {
         exact: true,
         path: 'message',

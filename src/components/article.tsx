@@ -9,7 +9,7 @@ import CommentEditor from './commentEditor';
 import 'highlight.js/styles/atom-one-light.css';
 import './styles/github-markdown.css';
 import style from './styles/article.less';
-import Id from '@/pages/articles/[id]';
+
 interface ArticleProps {
   id: number;
 }

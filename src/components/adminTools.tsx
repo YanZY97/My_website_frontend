@@ -1,48 +1,117 @@
 import React, { useState, FC } from 'react';
-import globalstyles from './styles/index.less';
 import { MarkdownEditor } from '@/components/components';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Input, message } from 'antd';
+import { request } from 'umi';
 
-interface Props {
-  isAdmin: boolean;
-}
+const { TextArea } = Input;
 
-const AdminTools: FC<Props> = props => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
+const AdminTools: FC<any> = props => {
+  const [isPostBlogModalVisible, setIsPostBlogModalVisible] = useState(false);
+  const [
+    isPostAnnouncementModalVisible,
+    setIsPostAnnouncementModalVisible,
+  ] = useState(false);
+  const [postText, setPostText] = useState('');
+  const handleChangePostText = (e: any) => {
+    setPostText(e.target.value);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const showModalPostBlog = () => {
+    setIsPostBlogModalVisible(true);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const handleOkPostModal = () => {
+    setIsPostBlogModalVisible(false);
+  };
+
+  const handleCancelPostModal = () => {
+    setIsPostBlogModalVisible(false);
+  };
+
+  const showModalPostAnnouncement = () => {
+    setIsPostAnnouncementModalVisible(true);
+  };
+
+  const handleOkPostAnnouncementModal = () => {
+    setIsPostAnnouncementModalVisible(false);
+  };
+
+  const handleCancelPostAnnouncementModal = () => {
+    setIsPostAnnouncementModalVisible(false);
+  };
+
+  const handlePostAnnouncement = () => {
+    request('/api/tools/postannouncement/', {
+      method: 'post',
+      headers: {
+        Authorization:
+          'Bearer ' +
+          (localStorage.getItem('access') || sessionStorage.getItem('access')),
+      },
+      data: {
+        text: postText,
+      },
+    })
+      .then(response => {
+        message.success(response);
+        setIsPostAnnouncementModalVisible(false);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const content = [
-    <div className={globalstyles.sidetool}>
+    <>
       <div style={{ padding: '12px' }}>
-        <Button type="ghost" onClick={showModal}>
+        <Button type="default" onClick={showModalPostBlog}>
           发布文章
         </Button>
-        <Modal
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          footer={null}
-          width={1500}
-        >
-          <MarkdownEditor />
-        </Modal>
+        <br />
+        <br />
+        <br />
+        <Button type="default" onClick={showModalPostAnnouncement}>
+          发布通知
+        </Button>
       </div>
-    </div>,
+    </>,
   ];
 
-  const empty = [<></>];
-  return <>{props.isAdmin ? content : empty}</>;
+  const modalPostBlog = [
+    <Modal
+      visible={isPostBlogModalVisible}
+      onOk={handleOkPostModal}
+      onCancel={handleCancelPostModal}
+      footer={null}
+      width={1500}
+    >
+      <MarkdownEditor />
+    </Modal>,
+  ];
+
+  const modalPostAnnouncement = [
+    <Modal
+      visible={isPostAnnouncementModalVisible}
+      onOk={handleOkPostAnnouncementModal}
+      onCancel={handleCancelPostAnnouncementModal}
+      footer={null}
+    >
+      <div>发布通知</div>
+      <TextArea rows={4} onChange={handleChangePostText} />
+      <br />
+      <br />
+      <Button type={'primary'} onClick={handlePostAnnouncement}>
+        发布
+      </Button>
+    </Modal>,
+  ];
+  return (
+    <>
+      {content}
+      {modalPostBlog}
+      {modalPostAnnouncement}
+    </>
+  );
 };
 
 export default AdminTools;

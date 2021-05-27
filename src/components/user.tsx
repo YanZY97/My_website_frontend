@@ -32,7 +32,12 @@ class User extends React.Component<UserProps, any> {
         payload: {
           isLogin: true,
           username: username,
-          avatar: '/api/media/avatars/' + username + '/avatar.png',
+          avatar:
+            '/api/media/avatars/' +
+            username +
+            '/avatar.png' +
+            '?ran=' +
+            Math.random(),
         },
       });
     }
@@ -56,7 +61,9 @@ class User extends React.Component<UserProps, any> {
     const menu = (
       <Menu>
         <Menu.Item>
-          <a>个人中心</a>
+          <Link to="usercenter">
+            <a>个人中心</a>
+          </Link>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>

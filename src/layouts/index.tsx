@@ -1,28 +1,16 @@
 import React from 'react';
-import { Layout, Menu, Avatar, Col, Row, BackTop, Affix, message } from 'antd';
+import { Layout, Col, Row, BackTop, Affix } from 'antd';
 import {
   Contact,
   CalendarSpan,
   LikeMe,
   BulletinBoard,
-  AdminTools,
-  User,
+  Headers,
 } from '@/components/components';
-import { Link, request } from 'umi';
-import {
-  HomeTwoTone,
-  FileTextTwoTone,
-  ExperimentTwoTone,
-  MessageTwoTone,
-  HeartTwoTone,
-  IdcardTwoTone,
-} from '@ant-design/icons';
+import { request } from 'umi';
 import styles from './index.less';
-import theme from '../../config/theme';
 
 import heartImg from '../assets/imgs/heart.png';
-import logoImg from '../assets/imgs/logo.png';
-import githubImg from '../assets/imgs/github.png';
 
 interface Props {
   location: any;
@@ -101,10 +89,10 @@ class BasicLayout extends React.Component<Props, isState> {
           (localStorage.getItem('access') || sessionStorage.getItem('access')),
       },
     })
-      .then(response => {
+      .then(() => {
         this.setState({ permission: true });
       })
-      .catch(error => {
+      .catch(() => {
         this.setState({ permission: false });
         // message.destroy();
         return;
@@ -112,72 +100,11 @@ class BasicLayout extends React.Component<Props, isState> {
   };
 
   render() {
-    const { Header, Content, Footer } = Layout;
-    const pathname = this.props.location.pathname;
+    const { Content, Footer } = Layout;
 
     return (
       <Layout style={{ backgroundColor: '#00000000' }}>
-        <Header className={styles.header}>
-          <div className={styles.logo}>
-            <img src={logoImg} style={{ height: '30px' }} /> title
-          </div>
-          <div className={styles.user}>
-            <User />
-            <a
-              href="https://github.com/YanZY97/My_website_frontend"
-              target="_blank"
-            >
-              <Avatar
-                size={28}
-                src={githubImg}
-                className={styles.githubLink}
-              ></Avatar>
-            </a>
-          </div>
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={pathname}
-            style={{ lineHeight: '48px' }}
-          >
-            <Menu.Item key="home">
-              <Link to="/home">
-                <HomeTwoTone twoToneColor={theme['@primary-color']} />
-                首页
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="blog">
-              <Link to="/blog">
-                <FileTextTwoTone twoToneColor={theme['@primary-color']} />
-                博客
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="lab">
-              <Link to="/lab">
-                <ExperimentTwoTone twoToneColor={theme['@primary-color']} />
-                实验室
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="message">
-              <Link to="/message">
-                <MessageTwoTone twoToneColor={theme['@primary-color']} />
-                留言板
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="partner">
-              <Link to="/partner">
-                <HeartTwoTone twoToneColor={theme['@primary-color']} />
-                伙伴
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="about">
-              <Link to="/about">
-                <IdcardTwoTone twoToneColor={theme['@primary-color']} />
-                关于我
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Header>
+        <Headers location={location} />
         <Content className={styles.content}>
           <Row>
             <Col span={15} offset={2} style={{ marginRight: '12px' }}>
@@ -211,9 +138,6 @@ class BasicLayout extends React.Component<Props, isState> {
                       }
                       count={this.state.count}
                     />
-                  </Col>
-                  <Col span={24} className={styles.sidetools}>
-                    <AdminTools isAdmin={this.state.permission} />
                   </Col>
                 </Affix>
               </Row>

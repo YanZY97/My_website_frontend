@@ -10,6 +10,7 @@ interface PostUrl {
   title: string;
   cls: string;
   tags: string;
+  abstract: string;
 }
 
 class PostBlog extends PluginComponent<PostUrl> {
@@ -25,6 +26,7 @@ class PostBlog extends PluginComponent<PostUrl> {
       title: '',
       cls: '',
       tags: '',
+      abstract: '',
     };
   }
 
@@ -53,6 +55,7 @@ class PostBlog extends PluginComponent<PostUrl> {
         title: this.state.title,
         cls: this.state.cls,
         tags: this.state.tags,
+        abstract: this.state.abstract,
       },
     })
       .then(response => {
@@ -93,7 +96,15 @@ class PostBlog extends PluginComponent<PostUrl> {
     });
   };
 
+  onChangeAbstract = (e: { target: { value: string } }) => {
+    const { value } = e.target;
+    this.setState({
+      abstract: value,
+    });
+  };
+
   render() {
+    const { TextArea } = Input;
     return (
       <>
         <span
@@ -118,6 +129,13 @@ class PostBlog extends PluginComponent<PostUrl> {
           <br />
           <br />
           <Input placeholder="标签" onChange={this.onChangeTags} />
+          <br />
+          <br />
+          <TextArea
+            rows={4}
+            placeholder="摘要"
+            onChange={this.onChangeAbstract}
+          />
         </Modal>
       </>
     );

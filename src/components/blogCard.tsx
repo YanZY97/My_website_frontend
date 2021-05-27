@@ -20,7 +20,7 @@ interface Props {
     visits?: number;
     comments?: number;
     time?: string;
-    content?: string;
+    abstract?: string;
   };
 }
 
@@ -58,9 +58,11 @@ class BlogCard extends React.Component<Props, any> {
             <Link to={`articles/${this.props.data.id}`}>
               <Paragraph
                 ellipsis={{ rows: 3, expandable: false }}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', textAlign: 'left' }}
               >
-                <span>{this.props.data.content}</span>
+                <div style={{ margin: '16px 8px', fontSize: '16px' }}>
+                  {this.props.data.abstract}
+                </div>
               </Paragraph>
             </Link>
           </Col>

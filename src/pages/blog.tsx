@@ -1,5 +1,4 @@
-import React, { FC, useState } from 'react';
-import styles from './blog.less';
+import React from 'react';
 import { request } from 'umi';
 
 import { BlogCard } from '@/components/components';

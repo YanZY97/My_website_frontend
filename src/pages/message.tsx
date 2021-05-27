@@ -49,7 +49,9 @@ class Message extends React.Component<ConnectProps, States> {
   };
 
   getMessageCount = async () => {
-    await request('/api/message/getmessagecount/').then(response => {
+    await request('/api/message/getmessagecount/', {
+      method: 'get',
+    }).then(response => {
       this.setState({
         messageCount: response.count,
       });

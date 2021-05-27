@@ -11,6 +11,7 @@ interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
 
 interface isProps extends ConnectProps {
   user: UserModelState;
+  onlyAdmin?: boolean;
 }
 
 interface isState {
@@ -18,6 +19,10 @@ interface isState {
 }
 
 class Login extends React.Component<isProps, isState> {
+  static defaultProps = {
+    onlyAdmin: false,
+  };
+
   constructor(props: isProps) {
     super(props);
     this.state = {
@@ -31,9 +36,13 @@ class Login extends React.Component<isProps, isState> {
     try {
       const value = await this.formRef.current?.validateFields();
       const remember = this.formRef.current?.getFieldValue('remember');
+      const url = this.props.onlyAdmin
+        ? '/api/user/adminlogin/'
+        : '/api/user/login/';
+      const redirectUrl = this.props.onlyAdmin ? '/admin' : '/';
       const { dispatch } = this.props;
       this.setState({ loading: true });
-      await request('/api/user/login/', {
+      await request(url, {
         method: 'post',
         data: value,
       })
@@ -60,7 +69,7 @@ class Login extends React.Component<isProps, isState> {
                   '/api/media/avatars/' + response.username + '/avatar.png',
               },
             });
-            history.push('/');
+            history.push(redirectUrl);
           },
         )
         .catch((error: any) => {
@@ -74,6 +83,34 @@ class Login extends React.Component<isProps, isState> {
 
   render() {
     const { loading } = this.state;
+    const foot = this.props.onlyAdmin
+      ? [
+          <div style={{ textAlign: 'center', marginTop: '32px' }}>
+            <a>
+              <Link to="reset-password">忘记密码？</Link>
+            </a>
+            <Divider type="vertical" />
+            <a>
+              <Link to="/"> 返回首页 </Link>
+            </a>
+          </div>,
+        ]
+      : [
+          <div style={{ textAlign: 'center', marginTop: '32px' }}>
+            <a>
+              <Link to="reset-password">忘记密码？</Link>
+            </a>
+            <Divider type="vertical" />
+            <a>
+              <Link to="register"> 现在注册 </Link>
+            </a>
+            <Divider type="vertical" />
+            <a>
+              <Link to="/"> 返回首页 </Link>
+            </a>
+          </div>,
+        ];
+
     return (
       <>
         <div
@@ -126,19 +163,7 @@ class Login extends React.Component<isProps, isState> {
                 </Button>
               </div>
             </Form.Item>
-            <div style={{ textAlign: 'center', marginTop: '32px' }}>
-              <a>
-                <Link to="reset-password">忘记密码？</Link>
-              </a>
-              <Divider type="vertical" />
-              <a>
-                <Link to="register"> 现在注册 </Link>
-              </a>
-              <Divider type="vertical" />
-              <a>
-                <Link to="/"> 返回首页 </Link>
-              </a>
-            </div>
+            {foot}
           </Form>
         </div>
       </>
