@@ -61,7 +61,7 @@ class Headers extends React.Component<Props, any> {
           <Menu.Item key="/blog">
             <Link to="/blog">
               <FileTextTwoTone twoToneColor={theme['@primary-color']} />
-              博客
+              文章
             </Link>
           </Menu.Item>
           <Menu.Item key="/lab">

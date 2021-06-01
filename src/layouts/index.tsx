@@ -8,6 +8,7 @@ import {
   Headers,
 } from '@/components/components';
 import { request } from 'umi';
+import QueueAnim from 'rc-queue-anim';
 import styles from './index.less';
 
 import heartImg from '../assets/imgs/heart.png';
@@ -108,38 +109,65 @@ class BasicLayout extends React.Component<Props, isState> {
         <Content className={styles.content}>
           <Row>
             <Col span={15} offset={2} style={{ marginRight: '12px' }}>
-              <div className={styles.children}>{this.props.children}</div>
+              <QueueAnim
+                type={['right', 'left']}
+                ease={['easeOutQuart', 'easeInOutQuart']}
+              >
+                <div key={location.pathname} className={styles.children}>
+                  {this.props.children}
+                </div>
+              </QueueAnim>
             </Col>
             <Col span={5} style={{ marginLeft: '12px' }}>
               <Row>
-                <Col span={24} className={styles.sidetools}>
-                  <Contact />
-                </Col>
-                <Col span={24} className={styles.sidetools}>
-                  <CalendarSpan />
-                </Col>
-                <Affix offsetTop={64} className={styles.sidetools}>
-                  <Col span={24} className={styles.sidetools}>
-                    <BulletinBoard />
+                <QueueAnim delay={0} duration={1000} interval={200}>
+                  <Col span={24} className={styles.sidetools} key={'sidetool1'}>
+                    <Contact />
                   </Col>
-                  <Col span={24} className={styles.sidetools}>
-                    <LikeMe
-                      onClick={() =>
-                        request('/api/tools/like/', {
-                          method: 'post',
-                        })
-                          .then(response => {
-                            console.log(response);
-                            this.setState({ count: response });
-                          })
-                          .catch(error => {
-                            console.log(error);
-                          })
-                      }
-                      count={this.state.count}
-                    />
+                  <Col span={24} className={styles.sidetools} key={'sidetool2'}>
+                    <CalendarSpan />
                   </Col>
-                </Affix>
+                  <Affix offsetTop={64} className={styles.sidetools}>
+                    <QueueAnim delay={200} duration={1000}>
+                      <Col
+                        span={24}
+                        className={styles.sidetools}
+                        key={'sidetool3'}
+                      >
+                        <BulletinBoard />
+                      </Col>
+                      <Col
+                        span={24}
+                        className={styles.sidetools}
+                        key={'sidetool4'}
+                      >
+                        <LikeMe
+                          onClick={() =>
+                            request('/api/tools/like/', {
+                              method: 'post',
+                              data: {
+                                user:
+                                  localStorage.getItem('username') ||
+                                  sessionStorage.getItem('username')
+                                    ? localStorage.getItem('username') ||
+                                      sessionStorage.getItem('username')
+                                    : '',
+                              },
+                            })
+                              .then(response => {
+                                console.log(response);
+                                this.setState({ count: response });
+                              })
+                              .catch(error => {
+                                console.log(error);
+                              })
+                          }
+                          count={this.state.count}
+                        />
+                      </Col>
+                    </QueueAnim>
+                  </Affix>
+                </QueueAnim>
               </Row>
             </Col>
           </Row>

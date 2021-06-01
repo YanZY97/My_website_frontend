@@ -3,12 +3,13 @@ import { request } from 'umi';
 
 import { BlogCard } from '@/components/components';
 import { Skeleton, Pagination } from 'antd';
+import QueueAnim from 'rc-queue-anim';
 
 interface States {
   blogList: any;
   blogCount: number;
   page: number;
-  init: boolean;
+  show: boolean;
 }
 
 class Blog extends React.Component<any, States> {
@@ -18,13 +19,22 @@ class Blog extends React.Component<any, States> {
       blogList: [],
       blogCount: 0,
       page: 1,
-      init: false,
+      show: true,
     };
   }
 
   componentDidMount() {
     this.getBlogs();
     this.getBlogCount();
+    this.setState({
+      show: true,
+    });
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      show: false,
+    });
   }
 
   getBlogs = async () => {
@@ -34,11 +44,14 @@ class Blog extends React.Component<any, States> {
     }).then(response => {
       let blogCardList = [];
       for (let k = 0; k < response.data.length; k++) {
-        blogCardList.push(<BlogCard data={response.data[k]} />);
+        blogCardList.push(
+          <div key={'card' + k}>
+            <BlogCard data={response.data[k]} />
+          </div>,
+        );
       }
       this.setState({
         blogList: blogCardList,
-        init: true,
       });
     });
   };
@@ -60,34 +73,9 @@ class Blog extends React.Component<any, States> {
   };
 
   render() {
-    const skeleton = [
-      <div>
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-      </div>,
-    ];
-
     const content = [
       <div>
-        {this.state.blogList}
+        <QueueAnim>{this.state.blogList}</QueueAnim>
         <Pagination
           defaultCurrent={1}
           total={this.state.blogCount}
@@ -96,7 +84,7 @@ class Blog extends React.Component<any, States> {
       </div>,
     ];
 
-    return <>{this.state.init ? content : skeleton}</>;
+    return <>{this.state.show ? content : null}</>;
   }
 }
 

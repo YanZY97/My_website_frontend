@@ -5,6 +5,7 @@ import { request } from 'umi';
 import { connect, UserModelState, Dispatch } from 'umi';
 import { Skeleton, Pagination } from 'antd';
 import { MessageCard, MessageEditor } from '@/components/components';
+import QueueAnim from 'rc-queue-anim';
 
 interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
   dispatch?: Dispatch;
@@ -13,7 +14,6 @@ interface States {
   messageList: any;
   messageCount: number;
   page: number;
-  init: boolean;
 }
 
 class Message extends React.Component<ConnectProps, States> {
@@ -23,7 +23,6 @@ class Message extends React.Component<ConnectProps, States> {
       messageList: [],
       messageCount: 0,
       page: 1,
-      init: true,
     };
   }
 
@@ -39,11 +38,14 @@ class Message extends React.Component<ConnectProps, States> {
     }).then(response => {
       let messageCardList = [];
       for (let k = 0; k < response.data.length; k++) {
-        messageCardList.push(<MessageCard data={response.data[k]} />);
+        messageCardList.push(
+          <div key={k}>
+            <MessageCard data={response.data[k]} />
+          </div>,
+        );
       }
       this.setState({
         messageList: messageCardList,
-        init: true,
       });
     });
   };
@@ -66,53 +68,37 @@ class Message extends React.Component<ConnectProps, States> {
   };
 
   render() {
-    const skeleton = [
-      <div>
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-        <Skeleton avatar active />
-        <br />
-        <br />
-        <br />
-      </div>,
-    ];
-
     const content = [
-      <div style={{ backgroundColor: 'white' }}>
-        <MessageEditor
-          handleRefresh={() => {
-            this.getMessages, this.getMessageCount;
-          }}
-        />
-        <div className={styles.divider}></div>
-        <div style={{ backgroundColor: 'white', padding: '2em 4em 0' }}>
-          {this.state.messageList}
+      <QueueAnim>
+        <div style={{ backgroundColor: 'white' }} key="1">
+          <QueueAnim>
+            <MessageEditor
+              handleRefresh={() => {
+                this.getMessages, this.getMessageCount;
+              }}
+              key="1"
+            />
+            <div className={styles.divider}></div>
+            <div
+              style={{ backgroundColor: 'white', padding: '2em 4em 0' }}
+              key="2"
+            >
+              <QueueAnim>{this.state.messageList}</QueueAnim>
+            </div>
+            <div style={{ backgroundColor: 'white', padding: '0em 3em 2em' }}>
+              <Pagination
+                defaultCurrent={1}
+                total={this.state.messageCount}
+                onChange={this.handleChange}
+              />
+            </div>
+          </QueueAnim>
         </div>
-        <div style={{ backgroundColor: 'white', padding: '0em 3em 2em' }}>
-          <Pagination
-            defaultCurrent={1}
-            total={this.state.messageCount}
-            onChange={this.handleChange}
-          />
-        </div>
-      </div>,
+        ,
+      </QueueAnim>,
     ];
 
-    return <>{this.state.init ? content : skeleton}</>;
+    return <>{content}</>;
   }
 }
 

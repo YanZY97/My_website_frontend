@@ -4,6 +4,7 @@ import { Row, Col, Card, Avatar, Divider, Typography } from 'antd';
 
 const { Meta } = Card;
 const { Title, Paragraph, Text, Link } = Typography;
+import QueueAnim from 'rc-queue-anim';
 
 interface isProps {
   data: {
@@ -77,7 +78,7 @@ class PartnerLinks extends React.Component<any, isState> {
       .then(response => {
         let linkList = [];
         for (let k = 0; k < response.data.length; k++) {
-          linkList.push(<LinkCard data={response.data[k]} />);
+          linkList.push(<LinkCard data={response.data[k]} key={k} />);
         }
         this.setState({
           linkCardList: linkList,
@@ -91,7 +92,7 @@ class PartnerLinks extends React.Component<any, isState> {
   render() {
     return (
       <>
-        <Title>Page partner</Title>
+        <Title>Partners</Title>
         <Paragraph>
           <pre>
             能访问的个人主页会显示在这里
@@ -102,7 +103,11 @@ class PartnerLinks extends React.Component<any, isState> {
           </pre>
         </Paragraph>
         <Divider />
-        <Row gutter={[48, 48]}>{this.state.linkCardList}</Row>
+        <Row gutter={[48, 48]}>
+          {/* <QueueAnim> */}
+          {this.state.linkCardList}
+          {/* </QueueAnim> */}
+        </Row>
         <Divider />
         <Title>常用网站</Title>
         <Row gutter={[48, 48]}>
