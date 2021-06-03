@@ -104,7 +104,7 @@ class BasicLayout extends React.Component<Props, isState> {
     const { Content, Footer } = Layout;
 
     return (
-      <Layout style={{ backgroundColor: '#00000000' }}>
+      <Layout style={{ backgroundColor: '#00000000' }} key="a">
         <Headers location={location} />
         <Content className={styles.content}>
           <Row>
@@ -173,13 +173,27 @@ class BasicLayout extends React.Component<Props, isState> {
           </Row>
         </Content>
         <Footer className={styles.footer}>
-          <p>2021 </p>
+          <p>
+            ©2021. 由
+            <a href="https://react.docschina.org/" style={{ color: '#dcadff' }}>
+              {' '}
+              react{' '}
+            </a>
+            +
+            <a
+              href="https://docs.djangoproject.com/zh-hans/3.2/"
+              style={{ color: '#dcadff' }}
+            >
+              {' '}
+              Django{' '}
+            </a>
+            强力驱动.
+          </p>
+          <p>网站已经被访问了&nbsp;{this.state.visits}&nbsp;次</p>
           <div className={styles.divider}></div>
           <p>
-            Made with <img src={heartImg} style={{ height: '20px' }} /> by Y{' '}
-            <br />
-            <br />
-            网站已经被访问了&nbsp;{this.state.visits}&nbsp;次
+            Designed & Developed with{' '}
+            <img src={heartImg} style={{ height: '20px' }} /> by Y
           </p>
         </Footer>
         <BackTop style={{ zIndex: 110 }} />

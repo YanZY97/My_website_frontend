@@ -1,8 +1,8 @@
 export default [
-  // {
-  //   path: '/home',
-  //   component: '@/layouts/home',
-  // },
+  {
+    path: '/home',
+    component: '@/layouts/home',
+  },
   {
     path: '/login',
     component: '@/layouts/login',
@@ -52,7 +52,7 @@ export default [
     component: '@/layouts/index',
     routes: [
       { exact: true, path: '/', redirect: 'home' },
-      { exact: true, path: 'home', component: '@/layouts/home', title: 'home' },
+      // { exact: true, path: 'home', component: '@/layouts/home', title: 'home' },
       { exact: true, path: 'blog', component: '@/pages/blog', title: 'blog' },
       { exact: true, path: 'lab', component: '@/pages/lab', title: 'lab' },
       {

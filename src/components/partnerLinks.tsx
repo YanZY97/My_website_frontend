@@ -120,7 +120,12 @@ class PartnerLinks extends React.Component<any, isState> {
               }}
             >
               <Meta
-                avatar={<Avatar src={'https://github.com/favicon.ico'} />}
+                avatar={
+                  <Avatar
+                    shape="square"
+                    src={'https://github.com/favicon.ico'}
+                  />
+                }
                 title={'Github'}
                 description={'Where the world builds software'}
               />
@@ -136,7 +141,10 @@ class PartnerLinks extends React.Component<any, isState> {
             >
               <Meta
                 avatar={
-                  <Avatar src={'https://stackoverflow.com/favicon.ico'} />
+                  <Avatar
+                    shape="square"
+                    src={'https://stackoverflow.com/favicon.ico'}
+                  />
                 }
                 title={'stackoverflow'}
                 description={'Where Developers Learn, Share, & Build Careers'}
@@ -154,7 +162,12 @@ class PartnerLinks extends React.Component<any, isState> {
             >
               <Meta
                 avatar={
-                  <Avatar src={'https://translate.google.com/favicon.ico'} />
+                  <Avatar
+                    shape="square"
+                    src={
+                      'https://ss3.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/baike/pic/item/cdbf6c81800a19d8ce78815539fa828ba61e4662.jpg'
+                    }
+                  />
                 }
                 title={'google翻译'}
                 description={'google translate'}
@@ -171,7 +184,10 @@ class PartnerLinks extends React.Component<any, isState> {
             >
               <Meta
                 avatar={
-                  <Avatar src={'https://csdnimg.cn/public/favicon.ico'} />
+                  <Avatar
+                    shape="square"
+                    src={'https://g.csdnimg.cn/static/logo/favicon32.ico'}
+                  />
                 }
                 title={'CSDN'}
                 description={'专业开发者社区'}
@@ -192,6 +208,7 @@ class PartnerLinks extends React.Component<any, isState> {
                     src={
                       'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'
                     }
+                    shape="square"
                   />
                 }
                 title={'Ant Design'}
@@ -213,10 +230,33 @@ class PartnerLinks extends React.Component<any, isState> {
                     src={
                       'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI4IC0xOCkiPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSItODg0LjQ4NiIgeTE9IjU2NC4xOTUiIHgyPSItODg0LjM1NCIgeTI9IjU2My45NjciIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMzYgMCAwIC0zNiAzMTg4NyAyMDM0NSkiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y1YTI0NiIvPjxzdG9wIG9mZnNldD0iLjc3IiBzdG9wLWNvbG9yPSIjZWY1NjMxIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBkPSJNNDggNTcuOGMtOC4yIDAtMTUuNy01LjEtMTguNi0xMy4xLTMuMy05LjEuNC0xOS4xIDguOC0yMy45IDguNC00LjggMTguOS0yLjkgMjUuMSA0LjYuNi44LjUgMS45LS4yIDIuNS0uOC42LTEuOS41LTIuNS0uMi01LTYuMS0xMy43LTcuNi0yMC41LTMuNy02LjkgMy45LTkuOSAxMi4xLTcuMiAxOS42LjEuMy4yLjUuMy44TDM4LjcgMzBjLjMtLjcuOS0xLjIgMS43LTEuMi44IDAgMS40LjUgMS43IDEuMmw0LjEgMTIuMyA0LjYtMTAuNmMuMy0uNyAxLTEuMSAxLjctMS4xczEuNC41IDEuNiAxLjFsMS43IDQuNEg2NmMxIDAgMS44LjggMS44IDEuOCAwIDkuNi02LjkgMTcuOC0xNi40IDE5LjUtMS4xLjMtMi4zLjQtMy40LjR6bS0xMi42LTkuNkMzOSA1Mi43IDQ0LjkgNTUgNTAuOCA1NGM3LjItMS4zIDEyLjUtNy4xIDEzLjMtMTQuMmgtOS42Yy0uNyAwLTEuNC0uNS0xLjctMS4xbC0uNi0xLjVMNDcuNSA0OGMtLjMuNy0xIDEuMS0xLjcgMS4xcy0xLjQtLjUtMS42LTEuMmwtNC0xMi00LjggMTIuM3oiIGZpbGw9InVybCgjYSkiLz48L2c+PC9zdmc+'
                     }
+                    shape="square"
                   />
                 }
                 title={'Gitmind'}
                 description={'免费在线思维导图软件'}
+              />
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card
+              hoverable
+              style={{ width: 200 }}
+              onClick={() => {
+                window.open('https://www.iconfont.cn/');
+              }}
+            >
+              <Meta
+                avatar={
+                  <Avatar
+                    src={
+                      'http://img.alicdn.com/imgextra/i4/O1CN01EYTRnJ297D6vehehJ_!!6000000008020-55-tps-64-64.svg'
+                    }
+                    shape="square"
+                  />
+                }
+                title={'iconfont'}
+                description={'阿里巴巴矢量图标库'}
               />
             </Card>
           </Col>

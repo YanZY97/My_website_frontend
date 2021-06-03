@@ -14,6 +14,7 @@ import {
 import { Menu, Avatar, Layout } from 'antd';
 import { User } from '@/components/components';
 import { Link, request } from 'umi';
+import QueueAnim from 'rc-queue-anim';
 
 interface Props {
   location: any;
@@ -29,7 +30,7 @@ class Headers extends React.Component<Props, any> {
     const pathname = this.props.location.pathname;
 
     return (
-      <Header className={styles.header}>
+      <Header className={styles.header} key="1">
         <div className={styles.logo}>
           <img src={logoImg} style={{ height: '30px' }} /> title
         </div>

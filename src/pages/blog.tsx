@@ -70,6 +70,10 @@ class Blog extends React.Component<any, States> {
     });
     this.getBlogs();
     this.getBlogCount();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   render() {

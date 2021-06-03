@@ -25,7 +25,7 @@ export default () => {
             https://github.com/YanZY97
           </Link>
           <br />
-          请follow我
+          please follow & star
           <br />
         </Paragraph>
         <Divider />
@@ -37,8 +37,8 @@ export default () => {
           本网站完全由我个人进行开发和维护
           <br />
           部署于个人服务器
-          <br />
-          由花生壳提供内网穿透
+          <br />由<Link href="https://www.natfrp.com/">sakura frp</Link>
+          提供内网穿透服务
           <br />
           本站源代码： <br />
           前端：{' '}

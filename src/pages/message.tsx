@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './message.less';
 import { request } from 'umi';
 
-import { connect, UserModelState, Dispatch } from 'umi';
-import { Skeleton, Pagination } from 'antd';
+import { Dispatch } from 'umi';
+import { Pagination } from 'antd';
 import { MessageCard, MessageEditor } from '@/components/components';
 import QueueAnim from 'rc-queue-anim';
 
@@ -65,6 +65,10 @@ class Message extends React.Component<ConnectProps, States> {
       page: page,
     });
     this.getMessages();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   render() {
