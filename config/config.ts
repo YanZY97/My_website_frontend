@@ -21,5 +21,7 @@ export default defineConfig({
     compact: false,
   },
   dva: {},
-  dynamicImport: {},
+  dynamicImport: {
+    loading: '@/loading',
+  },
 });
