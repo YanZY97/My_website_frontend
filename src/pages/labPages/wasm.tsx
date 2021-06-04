@@ -28,7 +28,7 @@ const wasmTest = async (url: string) => {
 };
 
 const handleWasmTest = async () => {
-  const wasmUrl = 'http://localhost:3000/clib/test.wasm';
+  const wasmUrl = '/clib/test.wasm';
   const { add, fibonacci } = await wasmTest(wasmUrl);
   console.log(add(2, 5));
   console.log(fibonacci(8));

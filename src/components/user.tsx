@@ -82,7 +82,7 @@ class User extends React.Component<UserProps, any> {
               : { display: 'inline' }
           }
         >
-          <Link to="login">登录</Link>
+          <Link to="/login">登录</Link>
         </Button>
         &nbsp;&nbsp;&nbsp;
         <Button
@@ -94,7 +94,7 @@ class User extends React.Component<UserProps, any> {
               : { display: 'inline' }
           }
         >
-          <Link to="register">注册</Link>
+          <Link to="/register">注册</Link>
         </Button>
         <Dropdown
           overlay={menu}
