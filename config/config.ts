@@ -6,7 +6,7 @@ export default defineConfig({
   links: [{ rel: 'icon', href: '/logo.ico' }],
   proxy: {
     '/api': {
-      target: 'http://127.0.0.1:8000',
+      target: 'http://123.123.123.123:8000',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },
