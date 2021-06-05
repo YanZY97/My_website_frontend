@@ -705,7 +705,13 @@ class UserDetail extends React.Component<isProps, isState> {
                 <Avatar
                   size={240}
                   style={{ margin: '0 auto 80px' }}
-                  src={this.state.avatar + '?ran=' + Math.random()}
+                  src={
+                    '/api/media/avatars/' +
+                    this.state.username +
+                    '/avatar.png' +
+                    '?ran=' +
+                    Math.random()
+                  }
                 />
                 <br />
                 <Button
