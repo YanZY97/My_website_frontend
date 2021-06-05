@@ -37,7 +37,7 @@ export default () => {
           本网站完全由我个人进行开发和维护
           <br />
           部署于个人服务器
-          <br />由<Link href="https://www.natfrp.com/">sakura frp</Link>
+          <br />由<Link href="https://www.uulap.com/">量子互联</Link>
           提供内网穿透服务
           <br />
           本站源代码： <br />

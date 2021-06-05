@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@/pages/labPages/style.less';
-import { Button, Typography, Divider } from 'antd';
+import { Button, Typography, Divider, InputNumber } from 'antd';
 
 const wasmTest = async (url: string) => {
   const env = {
@@ -27,16 +27,36 @@ const wasmTest = async (url: string) => {
   return instance;
 };
 
-const handleWasmTest = async () => {
-  const wasmUrl = '/clib/test.wasm';
-  const { add, fibonacci } = await wasmTest(wasmUrl);
-  console.log(add(2, 5));
-  console.log(fibonacci(8));
-};
-
 const { Title, Paragraph, Text, Link } = Typography;
 
 export default () => {
+  const [a, setA] = useState(0);
+  const [b, setB] = useState(0);
+  const [c, setC] = useState(0);
+  const [res, setRes] = useState(0);
+
+  const onChangeA = (value: any) => {
+    setA(value);
+  };
+  const onChangeB = (value: any) => {
+    setB(value);
+  };
+  const onChangeC = (value: any) => {
+    setC(value);
+  };
+
+  const handleWasmTestAdd = async () => {
+    const wasmUrl = '/clib/test.wasm';
+    const { add } = await wasmTest(wasmUrl);
+    setRes(add(a, b));
+  };
+
+  const handleWasmTestFib = async () => {
+    const wasmUrl = '/clib/test.wasm';
+    const { fibonacci } = await wasmTest(wasmUrl);
+    setRes(fibonacci(c));
+  };
+
   return (
     <>
       <div className={styles.index}>
@@ -63,9 +83,34 @@ export default () => {
         <Paragraph>
           用C语言编写计算加法和Fibonacci数列函数，编译成wasm在web中调用
         </Paragraph>
-        <Button type="default" onClick={handleWasmTest}>
-          Wasm Test
-        </Button>
+        <div>
+          <InputNumber
+            min={0}
+            max={10000000}
+            defaultValue={0}
+            onChange={onChangeA}
+          />
+          &nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;
+          <InputNumber
+            min={0}
+            max={10000000}
+            defaultValue={0}
+            onChange={onChangeB}
+          />
+          &nbsp;&nbsp;
+          <Button type="default" onClick={handleWasmTestAdd}>
+            +
+          </Button>
+          <br />
+          <br />
+          <InputNumber min={0} max={40} defaultValue={0} onChange={onChangeC} />
+          &nbsp;&nbsp;&nbsp;
+          <Button type="default" onClick={handleWasmTestFib}>
+            Fibonacci
+          </Button>
+          <br />
+          &nbsp;<h2>res: {res}</h2>
+        </div>
         <Paragraph>
           <pre>
             //C代码
