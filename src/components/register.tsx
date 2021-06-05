@@ -302,6 +302,7 @@ class Register extends React.Component<any, isState> {
                 showUploadList={false}
                 beforeUpload={this.beforeUpload}
                 onChange={this.handleChange}
+                action="/api/tools/uploadaction/"
               >
                 {avatarUrl ? (
                   <img src={avatarUrl} alt="avatar" style={{ width: '100%' }} />

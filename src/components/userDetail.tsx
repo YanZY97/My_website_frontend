@@ -166,7 +166,7 @@ class UserDetail extends React.Component<isProps, isState> {
         });
       })
       .catch(response => {
-        message.error(response);
+        message.error(response.data);
       });
   };
 
@@ -609,6 +609,7 @@ class UserDetail extends React.Component<isProps, isState> {
           >
             <Upload
               name="avatar"
+              action="/api/tools/uploadaction/"
               listType="picture-card"
               style={{ height: '128px', width: '128px' }}
               showUploadList={false}
