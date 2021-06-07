@@ -78,7 +78,8 @@ class Message extends React.Component<ConnectProps, States> {
           <QueueAnim>
             <MessageEditor
               handleRefresh={() => {
-                this.getMessages, this.getMessageCount;
+                this.getMessages();
+                this.getMessageCount();
               }}
               key="1"
             />

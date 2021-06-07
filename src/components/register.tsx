@@ -82,7 +82,7 @@ class Register extends React.Component<any, isState> {
   showAgreement = () => {
     Modal.info({
       title: '注册须知',
-      content: <div>1</div>,
+      content: <div></div>,
       onOk() {},
     });
   };
@@ -302,6 +302,7 @@ class Register extends React.Component<any, isState> {
                 showUploadList={false}
                 beforeUpload={this.beforeUpload}
                 onChange={this.handleChange}
+                action="/api/tools/uploadaction/"
               >
                 {avatarUrl ? (
                   <img src={avatarUrl} alt="avatar" style={{ width: '100%' }} />
@@ -341,7 +342,7 @@ class Register extends React.Component<any, isState> {
                 注册
               </Button>
               <Button type="link" style={{ width: '50%' }}>
-                <Link to="login">去登录</Link>
+                <Link to="/login">去登录</Link>
               </Button>
             </Form.Item>
           </Form>

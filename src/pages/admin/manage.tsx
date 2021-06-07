@@ -8,7 +8,7 @@ class Manage extends React.Component<any, any> {
   render() {
     return (
       <>
-        <div>123</div>
+        <div>manage</div>
       </>
     );
   }

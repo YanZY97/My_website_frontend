@@ -87,7 +87,7 @@ class Login extends React.Component<isProps, isState> {
       ? [
           <div style={{ textAlign: 'center', marginTop: '32px' }}>
             <a>
-              <Link to="reset-password">忘记密码？</Link>
+              <Link to="/reset-password">忘记密码？</Link>
             </a>
             <Divider type="vertical" />
             <a>
@@ -98,11 +98,11 @@ class Login extends React.Component<isProps, isState> {
       : [
           <div style={{ textAlign: 'center', marginTop: '32px' }}>
             <a>
-              <Link to="reset-password">忘记密码？</Link>
+              <Link to="/reset-password">忘记密码？</Link>
             </a>
             <Divider type="vertical" />
             <a>
-              <Link to="register"> 现在注册 </Link>
+              <Link to="/register"> 现在注册 </Link>
             </a>
             <Divider type="vertical" />
             <a>
