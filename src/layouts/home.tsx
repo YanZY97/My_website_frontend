@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './home.less';
-import { Link } from 'umi';
+import { Link, request } from 'umi';
 import { Button, Avatar } from 'antd';
 import {
   FileTextOutlined,
@@ -14,6 +14,10 @@ import heartImg from '../assets/imgs/heart.png';
 import QueueAnim from 'rc-queue-anim';
 
 export default () => {
+  request('/api/tools/visit/', {
+    method: 'post',
+  });
+
   return (
     <>
       <div className={styles.page}>
@@ -104,7 +108,11 @@ export default () => {
           </QueueAnim>
         </div>
         <div className={styles.footer}>
-          Made with <img src={heartImg} style={{ height: '20px' }} /> by Y{' '}
+          Made with{' '}
+          <Link to="/stuffLogin">
+            <img src={heartImg} style={{ height: '20px' }} />
+          </Link>{' '}
+          by Y{' '}
         </div>
       </div>
     </>

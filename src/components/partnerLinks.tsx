@@ -27,8 +27,8 @@ class LinkCard extends React.Component<isProps, any> {
         <Col span={6}>
           <Card
             hoverable
-            style={{ width: 200, height: 250 }}
-            cover={<img src={data.image} />}
+            style={{ width: 200 }}
+            cover={<img style={{ height: '200px' }} src={data.image} />}
             onClick={() => {
               window.open('http://' + data.link);
             }}
@@ -99,7 +99,7 @@ class PartnerLinks extends React.Component<any, isState> {
             <br />
             请联系我并将本站链接加入你的网站中
             <br />
-            提供网站图片用来展示
+            可以提供网站图片用来展示
           </pre>
         </Paragraph>
         <Divider />

@@ -45,7 +45,8 @@ class Headers extends React.Component<headerProps, any> {
     return (
       <Header className={styles.header}>
         <div className={styles.logo}>
-          <img src={logoImg} style={{ height: '30px' }} /> title
+          <img src={logoImg} style={{ height: '30px', marginTop: '-4px' }} />{' '}
+          Violety.cn
         </div>
         <div className={styles.user}>
           <User />

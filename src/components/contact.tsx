@@ -72,7 +72,7 @@ const Contact = () => (
       <IconFont type="icon-resume" className={globalstyles.icon} />
     </Tooltip>
     <Tooltip title="more">
-      <Link to="about">
+      <Link to="/about">
         <IconFont type="icon-more-copy-copy" className={globalstyles.icon} />
       </Link>
     </Tooltip>

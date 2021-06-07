@@ -31,9 +31,12 @@ class Headers extends React.Component<Props, any> {
 
     return (
       <Header className={styles.header} key="1">
-        <div className={styles.logo}>
-          <img src={logoImg} style={{ height: '30px' }} /> title
-        </div>
+        <Link to="/home">
+          <div className={styles.logo}>
+            <img src={logoImg} style={{ height: '30px', marginTop: '-4px' }} />
+            <span style={{ display: 'inline-block' }}>&nbsp;Violety.cn</span>
+          </div>
+        </Link>
         <div className={styles.user}>
           <User />
           <a

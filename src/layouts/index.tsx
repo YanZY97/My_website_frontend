@@ -174,7 +174,7 @@ class BasicLayout extends React.Component<Props, isState> {
         </Content>
         <Footer className={styles.footer}>
           <p>
-            ©2021. 由
+            ©2021&nbsp;Violety.cn.&nbsp;&nbsp;&nbsp;由
             <a href="https://react.docschina.org/" style={{ color: '#dcadff' }}>
               {' '}
               react{' '}

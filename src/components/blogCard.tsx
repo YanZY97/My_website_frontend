@@ -46,7 +46,7 @@ class BlogCard extends React.Component<Props, any> {
             />
           </Col>
           <Col>
-            <Link to={`articles/${this.props.data.id}`}>
+            <Link to={`/articles/${this.props.data.id}`}>
               <div className={style.title} style={{ cursor: 'pointer' }}>
                 {this.props.data.title}
               </div>
@@ -55,7 +55,7 @@ class BlogCard extends React.Component<Props, any> {
         </Row>
         <Row>
           <Col span={22} offset={1}>
-            <Link to={`articles/${this.props.data.id}`}>
+            <Link to={`/articles/${this.props.data.id}`}>
               <Paragraph
                 ellipsis={{ rows: 3, expandable: false }}
                 style={{ cursor: 'pointer', textAlign: 'left' }}

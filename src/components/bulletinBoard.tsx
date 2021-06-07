@@ -64,7 +64,6 @@ class BulletinBoard extends React.Component<any, States> {
         announcementList: announceCardList,
         init: true,
       });
-      console.log(announceCardList);
     });
   };
 

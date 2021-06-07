@@ -3,8 +3,6 @@ import { connect, UserModelState, Dispatch, Link } from 'umi';
 import { Avatar, Dropdown, Menu, Modal, Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-import Login from './login';
-import Register from './register';
 import style from './styles/user.less';
 
 const { confirm } = Modal;
@@ -61,7 +59,7 @@ class User extends React.Component<UserProps, any> {
     const menu = (
       <Menu>
         <Menu.Item>
-          <Link to="usercenter">
+          <Link to="/usercenter">
             <a>个人中心</a>
           </Link>
         </Menu.Item>
