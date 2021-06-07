@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import { Comment, Tooltip, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 

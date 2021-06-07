@@ -8,7 +8,6 @@ import {
   message,
   Row,
   Col,
-  DatePicker,
   Upload,
 } from 'antd';
 import { FormInstance } from 'antd/lib/form';

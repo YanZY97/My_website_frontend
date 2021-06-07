@@ -1,9 +1,8 @@
 import React from 'react';
-import { request, history, Link } from 'umi';
-import { Button, Form, Checkbox, Row, Col, Input, message } from 'antd';
+import { request, history } from 'umi';
+import { Button, Form, Row, Col, Input, message } from 'antd';
 import { FormInstance } from 'antd/lib/form';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { connect, UserModelState, Dispatch } from 'umi';
+import { MailOutlined } from '@ant-design/icons';
 
 interface isState {
   loading: boolean;

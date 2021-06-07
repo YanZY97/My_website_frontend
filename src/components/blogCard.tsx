@@ -1,7 +1,7 @@
 import React from 'react';
 import globalstyles from './styles/index.less';
 import style from './styles/bolgCard.less';
-import { request, Link } from 'umi';
+import { Link } from 'umi';
 import { Avatar, Row, Col, Typography } from 'antd';
 
 import { Time, Cls, Tags, Feedbacks } from './candies/components';

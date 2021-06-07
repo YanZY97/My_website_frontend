@@ -1,10 +1,9 @@
 import React from 'react';
-import { request, history } from 'umi';
+import { request } from 'umi';
 import { Row, Col, Card, Avatar, Divider, Typography } from 'antd';
 
 const { Meta } = Card;
-const { Title, Paragraph, Text, Link } = Typography;
-import QueueAnim from 'rc-queue-anim';
+const { Title, Paragraph } = Typography;
 
 interface isProps {
   data: {
@@ -95,11 +94,11 @@ class PartnerLinks extends React.Component<any, isState> {
         <Title>Partners</Title>
         <Paragraph>
           <pre>
-            能访问的个人主页会显示在这里
+            这里是友链
             <br />
-            请联系我并将本站链接加入你的网站中
+            首先请联系我并将本站链接加入你的网站中
             <br />
-            可以提供网站图片用来展示
+            可提供网站图片用来展示，图片区域长宽比为1:1
           </pre>
         </Paragraph>
         <Divider />
