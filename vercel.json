@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/:match*",
-      "destination": "http://s2.z100.vip:23950/:match*"
+      "source": "/api/:match(.*)",
+      "destination": "http://s2.z100.vip:23950/:match(.*)"
     }
   ]
 }
