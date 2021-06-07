@@ -40,13 +40,13 @@ export default () => {
         }}
         key={1}
       >
-        <h3>由于本站没有广告，所以这里是猫猫图</h3>
+        <h3>*由于本站没有广告，所以这里是猫猫图</h3>
         <img
           src={'https://thiscatdoesnotexist.com/' + '?ran=' + ran}
           alt=""
           style={{ width: '100%' }}
         />
-        <p>(是现实中不存在的猫猫)</p>
+        <p style={{ fontSize: 'small' }}>(this cat does not exist)</p>
       </Card>
     </>
   );

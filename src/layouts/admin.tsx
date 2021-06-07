@@ -4,7 +4,7 @@ import theme from '../../config/theme';
 import logoImg from '../assets/imgs/logo.png';
 import githubImg from '../assets/imgs/github.png';
 import { HomeTwoTone, ToolTwoTone, SettingTwoTone } from '@ant-design/icons';
-import { Menu, Avatar, Layout, Row, Col, message } from 'antd';
+import { Menu, Avatar, Layout, message } from 'antd';
 import { User } from '@/components/components';
 import { Link, request, history } from 'umi';
 

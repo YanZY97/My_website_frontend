@@ -1,10 +1,6 @@
 import React from 'react';
-import { request } from 'umi';
 import { EyeTwoTone, MessageTwoTone, LikeTwoTone } from '@ant-design/icons';
-import {
-  likeArticleHelper,
-  dislikeArticleHelper,
-} from '../../utils/feedbackHelper';
+import { likeArticleHelper } from '../../utils/feedbackHelper';
 
 interface Props {
   id: number;

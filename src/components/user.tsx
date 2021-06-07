@@ -65,7 +65,7 @@ class User extends React.Component<UserProps, any> {
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <a onClick={this.showConfirm}>注销</a>
+          <a onClick={this.showConfirm}>退出登录</a>
         </Menu.Item>
       </Menu>
     );

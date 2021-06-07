@@ -2,7 +2,7 @@ import React from 'react';
 import { request } from 'umi';
 
 import { BlogCard } from '@/components/components';
-import { Skeleton, Pagination } from 'antd';
+import { Pagination } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 
 interface States {
