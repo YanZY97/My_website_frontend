@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://s2.z100.vip:23950"
+    }
+  ]
+}
