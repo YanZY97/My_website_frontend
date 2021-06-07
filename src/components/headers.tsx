@@ -60,7 +60,7 @@ class Headers extends React.Component<Props, any> {
           style={{
             lineHeight: '48px',
             backgroundColor: '#00000000',
-            marginBottom: '0',
+            marginBottom: '0px',
           }}
         >
           <Menu.Item key="/home">
