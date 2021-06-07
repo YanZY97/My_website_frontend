@@ -29,7 +29,11 @@ class Headers extends React.Component<Props, any> {
     const pathname = this.props.location.pathname;
 
     return (
-      <Header className={styles.header} key="1">
+      <Header
+        className={styles.header}
+        key="1"
+        style={{ backgroundColor: '#ffffffd9' }}
+      >
         <Link to="/home">
           <div className={styles.logo}>
             <img src={logoImg} style={{ height: '30px', marginTop: '-4px' }} />
@@ -53,7 +57,11 @@ class Headers extends React.Component<Props, any> {
           theme="light"
           mode="horizontal"
           defaultSelectedKeys={pathname}
-          style={{ lineHeight: '48px' }}
+          style={{
+            lineHeight: '48px',
+            backgroundColor: '#00000000',
+            marginBottom: '0',
+          }}
         >
           <Menu.Item key="/home">
             <Link to="/home">
