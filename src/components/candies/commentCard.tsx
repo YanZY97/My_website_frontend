@@ -16,6 +16,7 @@ interface Props {
   data: {
     id: number;
     author: string;
+    avatar: string;
     data: string;
     likes: number;
     dislikes: number;
@@ -87,9 +88,7 @@ class CommentCard extends React.Component<Props, States> {
         <Comment
           actions={actions}
           author={data.author}
-          avatar={
-            <Avatar src={'/api/media/avatars/' + data.author + '/avatar.png'} />
-          }
+          avatar={<Avatar src={data.avatar} />}
           content={<p>{data.data}</p>}
           datetime={
             <Tooltip title={data.time}>

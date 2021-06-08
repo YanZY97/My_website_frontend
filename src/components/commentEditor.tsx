@@ -115,16 +115,7 @@ class CommentEditor extends React.Component<Props, State> {
         <div style={{ padding: '2em 4em' }}>
           <h1>发表评论</h1>
           <Comment
-            avatar={
-              <Avatar
-                size={'default'}
-                src={
-                  '/api/media/avatars/' +
-                  this.props.user.username +
-                  '/avatar.png'
-                }
-              />
-            }
+            avatar={<Avatar size={'default'} src={this.props.user.avatar} />}
             content={
               <Editor
                 onChange={this.handleChange}

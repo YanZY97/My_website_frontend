@@ -13,6 +13,11 @@ import {
 import { FormInstance } from 'antd/lib/form';
 import { request, history, Link } from 'umi';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { connect, UserModelState, Dispatch } from 'umi';
+
+interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
+  dispatch?: Dispatch;
+}
 
 function getBase64(
   img: Blob,
@@ -31,12 +36,8 @@ interface isState {
   cooldown: number;
 }
 
-class Register extends React.Component<any, isState> {
-  static defaultProps = {
-    display: true,
-  };
-
-  constructor(props: any) {
+class Register extends React.Component<ConnectProps, isState> {
+  constructor(props: ConnectProps) {
     super(props);
     this.state = {
       avatarLoading: false,
@@ -127,11 +128,38 @@ class Register extends React.Component<any, isState> {
         method: 'post',
         data: value,
       })
-        .then(response => {
+        .then(async response => {
           this.setState({ loading: false });
           message.destroy();
           message.success(response);
-          history.push('/');
+          await request('/api/user/login/', {
+            method: 'post',
+            data: value,
+          }).then(
+            (response: {
+              username: string;
+              refresh: string;
+              access: string;
+              id: number;
+            }) => {
+              const { dispatch } = this.props;
+              this.setState({ loading: false });
+              message.destroy();
+              message.success('登录成功');
+              localStorage.setItem('username', response.username);
+              localStorage.setItem('refresh', response.refresh);
+              localStorage.setItem('access', response.access);
+              dispatch!({
+                type: 'user/save',
+                payload: {
+                  isLogin: true,
+                  username: response.username,
+                  avatar: '/api/media/avatars/' + response.id + '/avatar.png',
+                },
+              });
+              history.push('/');
+            },
+          );
         })
         .catch(error => {
           console.log(error);
@@ -231,7 +259,11 @@ class Register extends React.Component<any, isState> {
                 }),
               ]}
             >
-              <Input.Password placeholder="请再次输入密码" />
+              <Input.Password
+                placeholder="请再次输入密码"
+                visibilityToggle={false}
+                autoComplete="off"
+              />
             </Form.Item>
             <Form.Item
               name="email"
@@ -351,4 +383,6 @@ class Register extends React.Component<any, isState> {
   }
 }
 
-export default Register;
+export default connect(({ user }: { user: UserModelState }) => ({ user }))(
+  Register,
+);

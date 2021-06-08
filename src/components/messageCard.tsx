@@ -1,11 +1,14 @@
 import React from 'react';
-import { Comment, Tooltip, Avatar } from 'antd';
+import { Comment, Tooltip, Avatar, Popover } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { UserPopover } from './candies/components';
 
 interface Props {
   data: {
     id: number;
     author: string;
+    signature: string;
+    avatar: string;
     content: string;
     time: string;
   };
@@ -19,14 +22,22 @@ class MessageCard extends React.Component<Props, any> {
   render() {
     const { data } = this.props;
     const author = data.author == '' ? '游客' : data.author;
+    const content = (
+      <div style={{ width: '240px' }}>
+        <UserPopover
+          user={data.author}
+          avatar={data.avatar}
+          signature={data.signature}
+        />
+      </div>
+    );
     const avatar =
       data.author == '' ? (
         <Avatar size="default" icon={<UserOutlined />} />
       ) : (
-        <Avatar
-          size="default"
-          src={'/api/media/avatars/' + data.author + '/avatar.png'}
-        />
+        <Popover content={content} placement="topLeft" trigger="click">
+          <Avatar size="default" src={data.avatar} />
+        </Popover>
       );
     return (
       <>
