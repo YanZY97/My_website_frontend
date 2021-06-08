@@ -18,6 +18,7 @@ interface ArticleStates {
   data: {
     id?: number;
     author?: string;
+    avatar?: string;
     title?: string;
     cls?: string;
     tags?: Array<string>;
@@ -31,6 +32,7 @@ interface ArticleStates {
   commentsData: Array<{
     id: number;
     author: string;
+    avatar: string;
     data: string;
     likes: number;
     dislikes: number;
@@ -47,6 +49,7 @@ interface TitleProps {
   id: number;
   title: string;
   author: string;
+  avatar: string;
   cls: string;
   tags: Array<string>;
   time: string;
@@ -64,6 +67,7 @@ class Title extends React.Component<TitleProps, any> {
     const {
       title,
       author,
+      avatar,
       cls,
       tags,
       time,
@@ -77,10 +81,7 @@ class Title extends React.Component<TitleProps, any> {
         <div className={style.titlelayout}>
           <div className={style.title}>{title}</div>
           <div className={style.author}>
-            <Avatar
-              size={'small'}
-              src={'/api/media/avatars/' + author + '/avatar.png'}
-            />
+            <Avatar size={'small'} src={avatar} />
             &nbsp;&nbsp;&nbsp;
             {author}
           </div>
@@ -173,6 +174,7 @@ class Article extends React.Component<ArticleProps, ArticleStates> {
         {
           id: 0,
           author: 'y',
+          avatar: '',
           likes: 0,
           dislikes: 0,
           time: '1997/2/7 10:00:00',
@@ -225,7 +227,7 @@ class Article extends React.Component<ArticleProps, ArticleStates> {
       cls,
       tags,
       likes,
-      dislikes,
+      avatar,
       visits,
       time,
       content,
@@ -236,6 +238,7 @@ class Article extends React.Component<ArticleProps, ArticleStates> {
         <Title
           title={title!}
           author={author!}
+          avatar={avatar!}
           cls={cls!}
           tags={tags!}
           likes={likes!}

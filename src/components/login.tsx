@@ -47,7 +47,12 @@ class Login extends React.Component<isProps, isState> {
         data: value,
       })
         .then(
-          (response: { username: string; refresh: string; access: string }) => {
+          (response: {
+            username: string;
+            refresh: string;
+            access: string;
+            id: number;
+          }) => {
             this.setState({ loading: false });
             message.destroy();
             message.success('登录成功');
@@ -65,11 +70,11 @@ class Login extends React.Component<isProps, isState> {
               payload: {
                 isLogin: true,
                 username: response.username,
-                avatar:
-                  '/api/media/avatars/' + response.username + '/avatar.png',
+                avatar: '/api/media/avatars/' + response.id + '/avatar.png',
               },
             });
             history.push(redirectUrl);
+            console.log(this.props.user.avatar);
           },
         )
         .catch((error: any) => {

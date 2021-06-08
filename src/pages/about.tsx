@@ -57,7 +57,7 @@ export default () => {
           <br />
         </Paragraph>
         <Divider />
-        <Title>赞助本站</Title>
+        {/* <Title>赞助本站</Title>
         <br />
         <Paragraph>
           如果本网站对你有所帮助，欢迎赞助支持
@@ -76,7 +76,7 @@ export default () => {
             <br />
             <Text style={{ color: '#3d51ff' }}>支付宝扫一扫，向我赞赏</Text>
           </Col>
-        </Row>
+        </Row> */}
       </div>
     </>
   );

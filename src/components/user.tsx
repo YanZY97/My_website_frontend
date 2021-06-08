@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, UserModelState, Dispatch, Link } from 'umi';
+import { connect, UserModelState, Dispatch, Link, request } from 'umi';
 import { Avatar, Dropdown, Menu, Modal, Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
@@ -20,24 +20,33 @@ class User extends React.Component<UserProps, any> {
     super(props);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { dispatch } = this.props;
-    const username =
-      localStorage.getItem('username') || sessionStorage.getItem('username');
-    if (username) {
-      dispatch!({
-        type: 'user/save',
-        payload: {
-          isLogin: true,
-          username: username,
-          avatar:
-            '/api/media/avatars/' +
-            username +
-            '/avatar.png' +
-            '?ran=' +
-            Math.random(),
+    if (localStorage.getItem('access') || sessionStorage.getItem('access')) {
+      await request('/api/user/getnameandid/', {
+        method: 'get',
+        headers: {
+          Authorization:
+            'Bearer ' +
+            (localStorage.getItem('access') ||
+              sessionStorage.getItem('access')),
         },
+      }).then(response => {
+        dispatch!({
+          type: 'user/save',
+          payload: {
+            isLogin: true,
+            username: response.username,
+            avatar:
+              '/api/media/avatars/' +
+              response.id +
+              '/avatar.png' +
+              '?ran=' +
+              Math.random(),
+          },
+        });
       });
+    } else {
     }
   }
 

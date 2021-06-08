@@ -11,6 +11,7 @@ const { Paragraph, Text } = Typography;
 interface Props {
   data: {
     id?: number;
+    avatar?: string;
     author?: string;
     title?: string;
     cls?: string;
@@ -39,9 +40,7 @@ class BlogCard extends React.Component<Props, any> {
           <Col span={2}>
             <Avatar
               size={'large'}
-              src={
-                '/api/media/avatars/' + this.props.data.author + '/avatar.png'
-              }
+              src={this.props.data.avatar}
               style={{ cursor: 'pointer' }}
             />
           </Col>

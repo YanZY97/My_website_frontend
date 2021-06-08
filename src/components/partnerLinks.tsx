@@ -8,6 +8,7 @@ const { Title, Paragraph } = Typography;
 interface isProps {
   data: {
     image: string;
+    avatar: string;
     link: string;
     username: string;
     signature: string;
@@ -33,17 +34,7 @@ class LinkCard extends React.Component<isProps, any> {
             }}
           >
             <Meta
-              avatar={
-                <Avatar
-                  src={
-                    '/api/media/avatars/' +
-                    data.username +
-                    '/avatar.png' +
-                    '?ran=' +
-                    Math.random()
-                  }
-                />
-              }
+              avatar={<Avatar src={data.avatar} />}
               title={data.username}
               description={data.signature}
             />
