@@ -14,6 +14,7 @@ import { FormInstance } from 'antd/lib/form';
 import { request, history, Link } from 'umi';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { connect, UserModelState, Dispatch } from 'umi';
+import ImgCrop from 'antd-img-crop';
 
 interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
   dispatch?: Dispatch;
@@ -325,21 +326,27 @@ class Register extends React.Component<ConnectProps, isState> {
               label="上传头像"
               extra="2MB内 JPG/PNG格式图片"
             >
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                style={{ height: '128px', width: '128px' }}
-                showUploadList={false}
-                beforeUpload={this.beforeUpload}
-                onChange={this.handleChange}
-                action="/api/tools/uploadaction/"
-              >
-                {avatarUrl ? (
-                  <img src={avatarUrl} alt="avatar" style={{ width: '100%' }} />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
+              <ImgCrop>
+                <Upload
+                  name="avatar"
+                  listType="picture-card"
+                  style={{ height: '128px', width: '128px' }}
+                  showUploadList={false}
+                  beforeUpload={this.beforeUpload}
+                  onChange={this.handleChange}
+                  action="/api/tools/uploadaction/"
+                >
+                  {avatarUrl ? (
+                    <img
+                      src={avatarUrl}
+                      alt="avatar"
+                      style={{ width: '100%' }}
+                    />
+                  ) : (
+                    uploadButton
+                  )}
+                </Upload>
+              </ImgCrop>
             </Form.Item>
             <Form.Item
               name="agreement"
