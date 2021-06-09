@@ -396,7 +396,6 @@ class UserDetail extends React.Component<isProps, isState> {
       return;
     }
     if (info.file.status === 'done') {
-      console.log(info.file);
       getBase64(info.file.originFileObj, avatarUrl =>
         this.setState({
           avatarUrl,

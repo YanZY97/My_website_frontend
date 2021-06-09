@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles/calendarSpan.less';
 
 const onPanelChange = (value: any, mode: any) => {
-  console.log(value, mode);
+  // console.log(value, mode);
 };
 
 const CalendarSpan = () => (

@@ -122,7 +122,6 @@ class Register extends React.Component<ConnectProps, isState> {
     try {
       let value = await this.formRef.current?.validateFields();
       (value as any).avatar = this.state.avatarUrl;
-      console.log(value);
       this.setState({ loading: true });
       await request('/api/user/register/', {
         method: 'post',

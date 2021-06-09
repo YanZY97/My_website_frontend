@@ -1,13 +1,20 @@
 import React from 'react';
 import styles from './about.less';
-import { Typography, Divider, Col, Row } from 'antd';
+import { Typography, Divider, Col, Row, Card } from 'antd';
 
 import wechatQR from '../assets/imgs/wechatqr.png';
 import alipayQR from '../assets/imgs/alipayqr.png';
+import { useState } from 'react';
 
 const { Title, Paragraph, Text, Link } = Typography;
 
+const generateRan = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 export default () => {
+  const [ran, setRan] = useState(generateRan(0, 100000));
+
   return (
     <>
       <div className={styles.index}>
@@ -77,6 +84,22 @@ export default () => {
             <Text style={{ color: '#3d51ff' }}>支付宝扫一扫，向我赞赏</Text>
           </Col>
         </Row> */}
+        <Card
+          hoverable
+          style={{ width: '50%', marginTop: '32px' }}
+          onClick={() => {
+            setRan(generateRan(0, 100000));
+          }}
+          key={1}
+        >
+          <img
+            src={
+              'https://www.thiswaifudoesnotexist.net/example-' + ran + '.jpg'
+            }
+            alt=""
+            style={{ width: '100%' }}
+          />
+        </Card>
       </div>
     </>
   );
