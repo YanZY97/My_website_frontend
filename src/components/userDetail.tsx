@@ -15,6 +15,7 @@ import {
   Avatar,
 } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import ImgCrop from 'antd-img-crop';
 
 function getBase64(
   img: Blob,
@@ -396,7 +397,6 @@ class UserDetail extends React.Component<isProps, isState> {
       return;
     }
     if (info.file.status === 'done') {
-      console.log(info.file);
       getBase64(info.file.originFileObj, avatarUrl =>
         this.setState({
           avatarUrl,
@@ -607,21 +607,23 @@ class UserDetail extends React.Component<isProps, isState> {
             label="上传头像"
             extra="2MB内 JPG/PNG格式图片"
           >
-            <Upload
-              name="avatar"
-              action="/api/tools/uploadaction/"
-              listType="picture-card"
-              style={{ height: '128px', width: '128px' }}
-              showUploadList={false}
-              beforeUpload={this.beforeUpload}
-              onChange={this.handleChange}
-            >
-              {avatarUrl ? (
-                <img src={avatarUrl} alt="avatar" style={{ width: '100%' }} />
-              ) : (
-                uploadButton
-              )}
-            </Upload>
+            <ImgCrop>
+              <Upload
+                name="avatar"
+                action="/api/tools/uploadaction/"
+                listType="picture-card"
+                style={{ height: '128px', width: '128px' }}
+                showUploadList={false}
+                beforeUpload={this.beforeUpload}
+                onChange={this.handleChange}
+              >
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="avatar" style={{ width: '100%' }} />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
+            </ImgCrop>
           </Form.Item>
         </Form>
         <Form.Item>

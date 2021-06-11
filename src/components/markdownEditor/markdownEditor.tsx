@@ -62,7 +62,6 @@ class MarkdownEditor extends React.Component<isProps, any> {
     };
   }
   handleEditorChange = (it: { text: string; html: string }, event: any) => {
-    // console.log('handleEditorChange', it.text, it.html, event);
     this.setState({
       value: it.text,
     });
@@ -80,7 +79,6 @@ class MarkdownEditor extends React.Component<isProps, any> {
   };
 
   onCustomImageUpload = (event: any): Promise<any> => {
-    console.log('onCustomImageUpload', event);
     return new Promise((resolve, reject) => {
       const result = window.prompt('Please enter image url here...') as string;
       resolve({ url: result });

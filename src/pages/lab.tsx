@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import { history } from 'umi';
+import { history, Link } from 'umi';
 
 const { Meta } = Card;
 import QueueAnim from 'rc-queue-anim';
@@ -47,6 +47,7 @@ export default () => {
           style={{ width: '100%' }}
         />
         <p style={{ fontSize: 'small' }}>(this cat does not exist)</p>
+        <a href="https://thesecatsdonotexist.com/">more！</a>
       </Card>
     </>
   );

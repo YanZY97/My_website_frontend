@@ -74,7 +74,6 @@ class Login extends React.Component<isProps, isState> {
               },
             });
             history.push(redirectUrl);
-            console.log(this.props.user.avatar);
           },
         )
         .catch((error: any) => {
