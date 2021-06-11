@@ -187,7 +187,10 @@ class BasicLayout extends React.Component<Props, isState> {
               {' '}
               Django{' '}
             </a>
-            强力驱动.
+            强力驱动.&nbsp;&nbsp; 托管于
+            <a href="https://vercel.com/" style={{ color: '#dcadff' }}>
+              &nbsp;Vercel&nbsp;
+            </a>
           </p>
           <p>网站已经被访问了&nbsp;{this.state.visits}&nbsp;次</p>
           <div className={styles.divider}></div>
