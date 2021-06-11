@@ -2,14 +2,14 @@ import React from 'react';
 import { request } from 'umi';
 
 import { BlogCard } from '@/components/components';
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 
 interface States {
   blogList: any;
   blogCount: number;
   page: number;
-  show: boolean;
+  loaded: boolean;
 }
 
 class Blog extends React.Component<any, States> {
@@ -19,21 +19,21 @@ class Blog extends React.Component<any, States> {
       blogList: [],
       blogCount: 0,
       page: 1,
-      show: true,
+      loaded: false,
     };
   }
 
-  componentDidMount() {
-    this.getBlogs();
+  async componentDidMount() {
+    await this.getBlogs();
     this.getBlogCount();
     this.setState({
-      show: true,
+      loaded: true,
     });
   }
 
   componentWillUnmount() {
     this.setState({
-      show: false,
+      loaded: false,
     });
   }
 
@@ -88,7 +88,13 @@ class Blog extends React.Component<any, States> {
       </div>,
     ];
 
-    return <>{this.state.show ? content : null}</>;
+    const skeleton = [
+      <div style={{ textAlign: 'center', paddingTop: '20%' }}>
+        <Spin size="large" tip="Loading..." />
+      </div>,
+    ];
+
+    return <>{this.state.loaded ? content : skeleton}</>;
   }
 }
 

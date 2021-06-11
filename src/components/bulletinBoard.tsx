@@ -1,7 +1,7 @@
 import React from 'react';
 import globalstyles from './styles/index.less';
 import { request } from 'umi';
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 
 interface States {
   announcementList: any;
@@ -17,7 +17,7 @@ class BulletinBoard extends React.Component<any, States> {
       announcementList: [],
       announcementCount: 0,
       page: 1,
-      init: true,
+      init: false,
     };
   }
 
@@ -76,10 +76,15 @@ class BulletinBoard extends React.Component<any, States> {
   };
 
   render() {
+    const skeleton = (
+      <div style={{ textAlign: 'center', padding: '5% 0' }}>
+        <Spin size="default" />
+      </div>
+    );
     return (
       <div className={globalstyles.sidetool} style={{ padding: '8px 0' }}>
         {/* <div className={globalstyles.divider}></div> */}
-        {this.state.announcementList}
+        {this.state.init ? this.state.announcementList : skeleton}
         <Pagination
           size="small"
           defaultCurrent={1}
