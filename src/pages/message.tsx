@@ -3,7 +3,7 @@ import styles from './message.less';
 import { request } from 'umi';
 
 import { Dispatch } from 'umi';
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 import { MessageCard, MessageEditor } from '@/components/components';
 import QueueAnim from 'rc-queue-anim';
 
@@ -14,6 +14,7 @@ interface States {
   messageList: any;
   messageCount: number;
   page: number;
+  loaded: boolean;
 }
 
 class Message extends React.Component<ConnectProps, States> {
@@ -23,15 +24,19 @@ class Message extends React.Component<ConnectProps, States> {
       messageList: [],
       messageCount: 0,
       page: 1,
+      loaded: false,
     };
   }
 
-  componentDidMount() {
-    this.getMessages();
+  async componentDidMount() {
+    await this.getMessages();
     this.getMessageCount();
   }
 
   getMessages = async () => {
+    this.setState({
+      loaded: false,
+    });
     await request('/api/message/getmessage/', {
       method: 'get',
       params: { page: this.state.page },
@@ -46,6 +51,7 @@ class Message extends React.Component<ConnectProps, States> {
       }
       this.setState({
         messageList: messageCardList,
+        loaded: true,
       });
     });
   };
@@ -61,17 +67,23 @@ class Message extends React.Component<ConnectProps, States> {
   };
 
   handleChange = async (page: number) => {
-    await this.setState({
-      page: page,
-    });
-    this.getMessages();
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
+    await this.setState({
+      page: page,
+      loaded: false,
+    });
+    this.getMessages();
   };
 
   render() {
+    const skeleton = [
+      <div style={{ textAlign: 'center', padding: '10% 0' }}>
+        <Spin size="large" tip="Loading..." />
+      </div>,
+    ];
     const content = [
       <QueueAnim>
         <div style={{ backgroundColor: 'white' }} key="1">
@@ -88,7 +100,9 @@ class Message extends React.Component<ConnectProps, States> {
               style={{ backgroundColor: 'white', padding: '2em 4em 0' }}
               key="2"
             >
-              <QueueAnim>{this.state.messageList}</QueueAnim>
+              <QueueAnim>
+                {this.state.loaded ? this.state.messageList : skeleton}
+              </QueueAnim>
             </div>
             <div style={{ backgroundColor: 'white', padding: '0em 3em 2em' }}>
               <Pagination
