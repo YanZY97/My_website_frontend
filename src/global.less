@@ -10,6 +10,8 @@
   src: url('./assets/fonts/blackjar.ttf');
 }
 
+@color-theme: 'purple';
+
 html,
 body,
 #root {
@@ -17,7 +19,7 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
-  background-image: url('./assets/backgrounds/white.jpg');
+  background-image: url('./assets/backgrounds/@{color-theme}.jpg');
   background-attachment: fixed;
   // background-size: 100%;
 }

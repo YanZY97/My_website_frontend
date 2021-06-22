@@ -39,10 +39,14 @@ export default () => {
                 </QueueAnim>
                 <div style={{ margin: '60px 0 0' }}>
                   <QueueAnim key="page" type="bottom" duration={1800}>
-                    <h2 key={1}>
-                      Stay young &nbsp;&nbsp;&nbsp;&nbsp; Stay simple
+                    <h2
+                      key={1}
+                      className={styles.title1}
+                      style={{ fontSize: '36px' }}
+                    >
+                      Hello! Passengers
                     </h2>
-                    <h2 key={2}>个人日志和技术分享</h2>
+                    <h2 key={2}>一个简单的个人网站</h2>
                   </QueueAnim>
                 </div>
               </div>

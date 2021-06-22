@@ -21,7 +21,7 @@ export default () => {
         <Title>关于我</Title>
         <br />
         <Paragraph>
-          某普通大学生
+          普通程序员社畜+不爱科研的研究生
           <br />
           喜欢动手，喜欢编程，爱音乐，爱吉他
           <br />
