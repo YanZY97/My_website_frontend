@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect, UserModelState, Dispatch, Link, request } from 'umi';
-import { Avatar, Dropdown, Menu, Modal, Button } from 'antd';
+import { Avatar, Dropdown, Menu, Modal, Button, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import style from './styles/user.less';
+import messageEditor from './messageEditor';
 
 const { confirm } = Modal;
 
@@ -31,21 +32,25 @@ class User extends React.Component<UserProps, any> {
             (localStorage.getItem('access') ||
               sessionStorage.getItem('access')),
         },
-      }).then(response => {
-        dispatch!({
-          type: 'user/save',
-          payload: {
-            isLogin: true,
-            username: response.username,
-            avatar:
-              '/api/media/avatars/' +
-              response.id +
-              '/avatar.png' +
-              '?ran=' +
-              Math.random(),
-          },
+      })
+        .then(response => {
+          dispatch!({
+            type: 'user/save',
+            payload: {
+              isLogin: true,
+              username: response.username,
+              avatar:
+                '/api/media/avatars/' +
+                response.id +
+                '/avatar.png' +
+                '?ran=' +
+                Math.random(),
+            },
+          });
+        })
+        .catch(error => {
+          message.destroy();
         });
-      });
     } else {
     }
   }
