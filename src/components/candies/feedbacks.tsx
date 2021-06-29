@@ -1,7 +1,9 @@
 import React from 'react';
 import { EyeTwoTone, MessageTwoTone, LikeTwoTone } from '@ant-design/icons';
 import { likeArticleHelper } from '../../utils/feedbackHelper';
+import { Typography } from 'antd';
 
+const { Text } = Typography;
 interface Props {
   id: number;
   visits: number;
@@ -59,7 +61,7 @@ class Feedbacks extends React.Component<Props, States> {
             fontFamily: 'comic-sans-ms',
           }}
         >
-          {this.props.visits}
+          <Text>{this.props.visits}</Text>
         </span>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <MessageTwoTone
@@ -78,7 +80,7 @@ class Feedbacks extends React.Component<Props, States> {
             fontFamily: 'comic-sans-ms',
           }}
         >
-          {this.props.comments}
+          <Text>{this.props.comments}</Text>
         </span>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <LikeTwoTone
@@ -99,7 +101,7 @@ class Feedbacks extends React.Component<Props, States> {
             fontFamily: 'comic-sans-ms',
           }}
         >
-          {this.state.init ? this.state.likes : this.props.likes}
+          <Text>{this.state.init ? this.state.likes : this.props.likes}</Text>
         </span>
       </>
     );

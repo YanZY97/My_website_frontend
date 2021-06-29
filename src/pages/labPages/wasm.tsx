@@ -109,10 +109,10 @@ export default () => {
             Fibonacci
           </Button>
           <br />
-          &nbsp;<h2>res: {res}</h2>
+          &nbsp;<Title level={3}>res: {res}</Title>
         </div>
         <Paragraph>
-          <pre>
+          <pre className={styles.pre}>
             //C代码
             <br />
             #include &lt;stdio.h&gt;

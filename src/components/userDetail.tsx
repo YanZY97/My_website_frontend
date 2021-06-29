@@ -13,6 +13,7 @@ import {
   DatePicker,
   Upload,
   Avatar,
+  Typography
 } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import ImgCrop from 'antd-img-crop';
@@ -647,63 +648,63 @@ class UserDetail extends React.Component<isProps, isState> {
         <div style={{ padding: '56px 80px' }}>
           <Row>
             <Col span={14}>
-              <h2 style={{ margin: '0 0 64px 32px' }}>基本信息</h2>
+              <Typography.Title level={2} style={{ margin: '0 0 64px 32px' }}>基本信息</Typography.Title>
               <Row gutter={[16, 24]}>
                 <Col span={3} offset={2} style={{ textAlign: 'right' }}>
-                  个人简介:
+                  <Typography.Text>个人简介:</Typography.Text>
                 </Col>
                 <Col span={11} offset={1}>
-                  {this.state.signature}
+                <Typography.Text>{this.state.signature}</Typography.Text>
                 </Col>
                 <Col span={7}>
-                  <a onClick={this.showModalChangeSignature}>修改</a>
+                  <Typography.Link onClick={this.showModalChangeSignature}>修改</Typography.Link>
                 </Col>
 
                 <Col span={3} offset={2} style={{ textAlign: 'right' }}>
-                  邮箱:
+                  <Typography.Text>邮箱:</Typography.Text>
                 </Col>
                 <Col span={11} offset={1}>
-                  {this.state.email}
+                  <Typography.Text>{this.state.email}</Typography.Text>
                 </Col>
                 <Col span={7}>
-                  <a onClick={this.showModalChangeEmail}>修改</a>
+                  <Typography.Link onClick={this.showModalChangeEmail}>修改</Typography.Link>
                 </Col>
 
                 <Col span={3} offset={2} style={{ textAlign: 'right' }}>
-                  手机:
+                  <Typography.Text>手机:</Typography.Text>
                 </Col>
                 <Col span={11} offset={1}>
-                  {this.state.mobile}
+                  <Typography.Text>{this.state.mobile}</Typography.Text>
                 </Col>
                 <Col span={7}>
-                  <a onClick={this.showModalChangeMobile}>修改</a>
+                  <Typography.Link onClick={this.showModalChangeMobile}>修改</Typography.Link>
                 </Col>
 
                 <Col span={3} offset={2} style={{ textAlign: 'right' }}>
-                  生日:
+                  <Typography.Text>生日:</Typography.Text>
                 </Col>
                 <Col span={11} offset={1}>
-                  {this.state.birthday}
+                  <Typography.Text>{this.state.birthday}</Typography.Text>
                 </Col>
                 <Col span={7}>
-                  <a onClick={this.showModalChangeBirthday}>修改</a>
+                  <Typography.Link onClick={this.showModalChangeBirthday}>修改</Typography.Link>
                 </Col>
 
                 <Col span={3} offset={2} style={{ textAlign: 'right' }}>
-                  个人主页:
+                  <Typography.Text>个人主页:</Typography.Text>
                 </Col>
                 <Col span={11} offset={1}>
-                  <a href={'http://' + this.state.website}>
+                  <Typography.Link href={'http://' + this.state.website}>
                     {this.state.website}
-                  </a>
+                  </Typography.Link>
                 </Col>
                 <Col span={7}>
-                  <a onClick={this.showModalChangeWebsite}>修改</a>
+                  <Typography.Link onClick={this.showModalChangeWebsite}>修改</Typography.Link>
                 </Col>
               </Row>
             </Col>
             <Col span={10}>
-              <h2 style={{ marginBottom: '32px' }}>头像</h2>
+              <Typography.Title level={2} style={{ marginBottom: '32px' }}>头像</Typography.Title>
               <div style={{ textAlign: 'center' }}>
                 <Avatar
                   size={240}

@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './home.less';
 import { Link, request } from 'umi';
-import { Button, Avatar } from 'antd';
+import setTheme from '@/utils/setTheme';
+import { Button, Avatar, Typography } from 'antd';
 import {
   FileTextOutlined,
   ExperimentOutlined,
@@ -13,10 +14,14 @@ import heartImg from '../assets/imgs/heart.png';
 
 import QueueAnim from 'rc-queue-anim';
 
+const { Title, Paragraph } = Typography;
+
 export default () => {
   request('/api/tools/visit/', {
     method: 'post',
   });
+
+  setTheme();
 
   return (
     <>
@@ -39,14 +44,16 @@ export default () => {
                 </QueueAnim>
                 <div style={{ margin: '60px 0 0' }}>
                   <QueueAnim key="page" type="bottom" duration={1800}>
-                    <h2
+                    <Title
                       key={1}
                       className={styles.title1}
                       style={{ fontSize: '36px' }}
                     >
                       Hello! Passengers
-                    </h2>
-                    <h2 key={2}>一个简单的个人网站</h2>
+                    </Title>
+                    <Title level={3} key={2} className={styles.title2}>
+                      一个简单的个人网站
+                    </Title>
                   </QueueAnim>
                 </div>
               </div>
@@ -112,11 +119,13 @@ export default () => {
           </QueueAnim>
         </div>
         <div className={styles.footer}>
-          Made with{' '}
-          <Link to="/stuffLogin">
-            <img src={heartImg} style={{ height: '20px' }} />
-          </Link>{' '}
-          by Y{' '}
+          <Paragraph>
+            Made with{' '}
+            <Link to="/stuffLogin">
+              <img src={heartImg} style={{ height: '20px' }} />
+            </Link>{' '}
+            by Y{' '}
+          </Paragraph>
         </div>
       </div>
     </>

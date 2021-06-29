@@ -1,7 +1,9 @@
 import React from 'react';
 import globalstyles from './styles/index.less';
 import { request } from 'umi';
-import { Pagination, Spin } from 'antd';
+import { Pagination, Spin, Typography } from 'antd';
+
+const { Text } = Typography;
 
 interface States {
   announcementList: any;
@@ -37,7 +39,7 @@ class BulletinBoard extends React.Component<any, States> {
     await request('/api/tools/getannouncement/', {
       method: 'get',
       params: { page: this.state.page },
-    }).then(response => {
+    }).then((response: { data: string | any[] }) => {
       let announceCardList = [];
       for (let k = 0; k < response.data.length; k++) {
         const data = response.data[k];
@@ -51,7 +53,9 @@ class BulletinBoard extends React.Component<any, States> {
                 padding: '4px 32px',
               }}
             >
-              <div>{data.text}</div>
+              <div>
+                <Text>{data.text}</Text>
+              </div>
               <div style={{ margin: '2px 0', color: '#8a8a8a' }}>
                 {data.time}
               </div>
@@ -68,11 +72,13 @@ class BulletinBoard extends React.Component<any, States> {
   };
 
   getAnnounceCount = async () => {
-    await request('/api/tools/getannouncementcount/').then(response => {
-      this.setState({
-        announcementCount: response.count,
-      });
-    });
+    await request('/api/tools/getannouncementcount/').then(
+      (response: { count: any }) => {
+        this.setState({
+          announcementCount: response.count,
+        });
+      },
+    );
   };
 
   render() {

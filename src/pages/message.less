@@ -1,9 +1,14 @@
+@import '../global.less';
+
 .divider {
   height: 1px;
-  border-top: 1px solid rgba(102, 102, 102, 0.295);
+  border-top: 1px solid @divider-color;
   text-align: center;
   position: relative;
   top: -8px;
-  background: #fff;
+  background: @divider-color;
   margin: 0 48px;
+}
+.background {
+  background-color: @body-background;
 }

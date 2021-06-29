@@ -1,4 +1,4 @@
-@import '~antd/lib/style/themes/default.less';
+@import '../global.less';
 
 // 网站logo
 .logo {
@@ -20,7 +20,7 @@
 }
 // 布局
 .header {
-  box-shadow: 0px 5px 8px @purple-6;
+  box-shadow: 0px 5px 8px @primary-color;
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -30,7 +30,7 @@
   // background-attachment: fixed;
   // background-size: 100%;
   padding-top: 64px;
-  box-shadow: 0px 2px 4px @purple-3;
+  box-shadow: 0px 2px 4px @primary-3;
   z-index: 90;
 }
 .footer {
@@ -51,6 +51,11 @@
 .sidetools {
   margin-bottom: 20px;
   width: 100%;
+}
+
+.backboard {
+  background-color: @component-background;
+  margin-right: 12px;
 }
 // github图标
 .githubLink {

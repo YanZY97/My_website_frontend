@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../layouts/index.less';
-import theme from '../../config/theme';
 import logoImg from '../assets/imgs/logo.png';
 import githubImg from '../assets/imgs/github.png';
 import {
@@ -11,12 +10,15 @@ import {
   HeartTwoTone,
   IdcardTwoTone,
 } from '@ant-design/icons';
-import { Menu, Avatar, Layout } from 'antd';
+import { Menu, Avatar, Layout, Typography } from 'antd';
 import { User } from '@/components/components';
 import { Link } from 'umi';
 
+const { Text } = Typography;
+
 interface Props {
   location: any;
+  signal: string;
 }
 
 class Headers extends React.Component<Props, any> {
@@ -29,15 +31,13 @@ class Headers extends React.Component<Props, any> {
     const pathname = this.props.location.pathname;
 
     return (
-      <Header
-        className={styles.header}
-        key="1"
-        style={{ backgroundColor: '#ffffffd9' }}
-      >
+      <Header className={styles.header} key="1">
         <Link to="/home">
           <div className={styles.logo}>
             <img src={logoImg} style={{ height: '30px', marginTop: '-4px' }} />
-            <span style={{ display: 'inline-block' }}>&nbsp;Violety.cn</span>
+            <span style={{ display: 'inline-block' }}>
+              <Text>&nbsp;Violety.cn</Text>
+            </span>
           </div>
         </Link>
         <div className={styles.user}>
@@ -59,43 +59,42 @@ class Headers extends React.Component<Props, any> {
           defaultSelectedKeys={pathname}
           style={{
             lineHeight: '48px',
-            backgroundColor: '#00000000',
             marginBottom: '0px',
           }}
         >
           <Menu.Item key="/home">
             <Link to="/home">
-              <HomeTwoTone twoToneColor={theme['@primary-color']} />
+              <HomeTwoTone />
               &nbsp;首页
             </Link>
           </Menu.Item>
           <Menu.Item key="/blog">
             <Link to="/blog">
-              <FileTextTwoTone twoToneColor={theme['@primary-color']} />
+              <FileTextTwoTone />
               &nbsp;文章
             </Link>
           </Menu.Item>
           <Menu.Item key="/lab">
             <Link to="/lab">
-              <ExperimentTwoTone twoToneColor={theme['@primary-color']} />
+              <ExperimentTwoTone />
               &nbsp;实验室
             </Link>
           </Menu.Item>
           <Menu.Item key="/message">
             <Link to="/message">
-              <MessageTwoTone twoToneColor={theme['@primary-color']} />
+              <MessageTwoTone />
               &nbsp;留言板
             </Link>
           </Menu.Item>
           <Menu.Item key="/partner">
             <Link to="/partner">
-              <HeartTwoTone twoToneColor={theme['@primary-color']} />
+              <HeartTwoTone />
               &nbsp;伙伴
             </Link>
           </Menu.Item>
           <Menu.Item key="/about">
             <Link to="/about">
-              <IdcardTwoTone twoToneColor={theme['@primary-color']} />
+              <IdcardTwoTone />
               &nbsp;关于我
             </Link>
           </Menu.Item>

@@ -1,12 +1,21 @@
 import React from 'react';
 import { connect, UserModelState, Dispatch, Link, request } from 'umi';
-import { Avatar, Dropdown, Menu, Modal, Button, message } from 'antd';
+import {
+  Avatar,
+  Dropdown,
+  Menu,
+  Modal,
+  Button,
+  message,
+  Typography,
+} from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import style from './styles/user.less';
 import messageEditor from './messageEditor';
 
 const { confirm } = Modal;
+const { Text } = Typography;
 
 // dva-model connectProps组件接口
 interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
@@ -74,7 +83,7 @@ class User extends React.Component<UserProps, any> {
       <Menu>
         <Menu.Item>
           <Link to="/usercenter">
-            <a>个人中心</a>
+            <Typography.Link>个人中心</Typography.Link>
           </Link>
         </Menu.Item>
         <Menu.Divider />
@@ -126,7 +135,9 @@ class User extends React.Component<UserProps, any> {
               src={this.props.user.avatar}
               alt={this.props.user.username[0]}
             />
-            <span className={style.username}>{this.props.user.username}</span>
+            <span className={style.username}>
+              <Text>{this.props.user.username}</Text>
+            </span>
           </div>
         </Dropdown>
       </span>

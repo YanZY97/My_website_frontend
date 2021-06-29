@@ -1,6 +1,8 @@
 import React from 'react';
 import { CalendarTwoTone } from '@ant-design/icons';
+import { Typography } from 'antd';
 
+const { Text } = Typography;
 interface Props {
   time: string;
   size?: number;
@@ -37,7 +39,7 @@ class Time extends React.Component<Props, any> {
             fontFamily: 'comic-sans-ms',
           }}
         >
-          {this.props.time}
+          <Text>{this.props.time}</Text>
         </span>
       </>
     );

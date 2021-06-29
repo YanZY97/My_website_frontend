@@ -1,6 +1,8 @@
+@import '../../global.less';
+
 .sidetool {
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: @component-background;
   text-align: center;
   transition: all 0.2s linear;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
@@ -14,7 +16,8 @@
   border-radius: 4px;
   padding: 15px;
   margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: @component-background;
+  // rgba(255, 255, 255, 0.85);
   text-align: center;
   transition: all 0.2s linear;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
@@ -36,10 +39,10 @@
 }
 .divider {
   height: 1px;
-  border-top: 1px solid rgba(102, 102, 102, 0.473);
+  border-top: 1px solid @divider-color;
   text-align: center;
   position: relative;
   top: 0px;
-  background: #fff;
+  background: @divider-color;
   margin: 0 8px;
 }

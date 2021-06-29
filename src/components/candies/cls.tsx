@@ -1,5 +1,8 @@
 import React from 'react';
+import { Typography } from 'antd';
 import { DatabaseTwoTone } from '@ant-design/icons';
+
+const { Text } = Typography;
 
 interface Props {
   cls: string;
@@ -39,7 +42,7 @@ class Cls extends React.Component<Props, any> {
             cursor: 'pointer',
           }}
         >
-          {this.props.cls}
+          <Text>{this.props.cls}</Text>
         </span>
       </>
     );
