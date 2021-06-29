@@ -7,7 +7,8 @@
       "modifyVars": {
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -17,10 +18,10 @@
       "fileName": "red.css",
       "modifyVars": {
         "@primary-color": "#F5222D",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -30,10 +31,10 @@
       "fileName": "volcano.css",
       "modifyVars": {
         "@primary-color": "#FA541C",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -43,10 +44,10 @@
       "fileName": "sunset.css",
       "modifyVars": {
         "@primary-color": "#FAAD14",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -56,10 +57,10 @@
       "fileName": "cyan.css",
       "modifyVars": {
         "@primary-color": "#13C2C2",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -69,10 +70,10 @@
       "fileName": "green.css",
       "modifyVars": {
         "@primary-color": "#52C41A",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -82,10 +83,10 @@
       "fileName": "blue.css",
       "modifyVars": {
         "@primary-color": "#1890FF",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -95,10 +96,10 @@
       "fileName": "geekblue.css",
       "modifyVars": {
         "@primary-color": "#2F54EB",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -108,10 +109,10 @@
       "fileName": "purple.css",
       "modifyVars": {
         "@primary-color": "#722ED1",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -121,10 +122,10 @@
       "fileName": "magenta.css",
       "modifyVars": {
         "@primary-color": "#EB2F96",
-        "@layout-header-background": "#0000",
+        "@layout-header-background": "#ffffffed",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#ffffffed",
+        "@menu-bg": "#0000",
         "@layout-header-padding": "0",
         "@component-background": "rgba(250, 250, 250, 0.85)"
       }
@@ -138,7 +139,8 @@
         "@primary-color": "#F5222D",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -151,7 +153,8 @@
         "@primary-color": "#FA541C",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -164,7 +167,8 @@
         "@primary-color": "#FAAD14",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -177,7 +181,8 @@
         "@primary-color": "#13C2C2",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -190,7 +195,8 @@
         "@primary-color": "#52C41A",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -203,7 +209,8 @@
         "@primary-color": "#2F54EB",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -216,7 +223,8 @@
         "@primary-color": "#722ED1",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
@@ -229,7 +237,8 @@
         "@primary-color": "#EB2F96",
         "@font-size-base": "15px",
         "@layout-header-height": "48px",
-        "@menu-bg": "#000000ed",
+        "@menu-bg": "#0000",
+        "@layout-header-background": "#000000ed",
         "@layout-header-padding": "0",
         "@component-background": "rgba(35, 35, 35, 0.85)"
       }
