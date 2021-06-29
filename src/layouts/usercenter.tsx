@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserDetail, Headers } from '@/components/components';
 import { Col, Row } from 'antd';
+import styles from './index.less'
 
 class UserCenter extends React.Component<any, any> {
   render() {
@@ -11,7 +12,7 @@ class UserCenter extends React.Component<any, any> {
           <Col
             span={20}
             offset={2}
-            style={{ marginRight: '12px', backgroundColor: '#ffffffdd' }}
+            className={styles.backboard}
           >
             <UserDetail />
           </Col>

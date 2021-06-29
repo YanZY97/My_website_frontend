@@ -83,7 +83,7 @@ class User extends React.Component<UserProps, any> {
       <Menu>
         <Menu.Item>
           <Link to="/usercenter">
-            <a>个人中心</a>
+            <Typography.Link>个人中心</Typography.Link>
           </Link>
         </Menu.Item>
         <Menu.Divider />
