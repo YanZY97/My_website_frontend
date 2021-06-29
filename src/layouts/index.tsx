@@ -1,11 +1,13 @@
 import React from 'react';
-import { Layout, Col, Row, BackTop, Affix } from 'antd';
+import { Layout, Col, Row, BackTop, Affix, Typography } from 'antd';
+import setTheme from '@/utils/setTheme';
 import {
   Contact,
   CalendarSpan,
   LikeMe,
   BulletinBoard,
   Headers,
+  ThemeTool,
 } from '@/components/components';
 import { request } from 'umi';
 import QueueAnim from 'rc-queue-anim';
@@ -13,6 +15,7 @@ import styles from './index.less';
 
 import heartImg from '../assets/imgs/heart.png';
 
+const { Link } = Typography;
 interface Props {
   location: any;
   children: React.ReactNode;
@@ -22,6 +25,7 @@ interface isState {
   count: number;
   visits: number;
   permission: boolean;
+  signalChangeIconColor: string;
 }
 
 class BasicLayout extends React.Component<Props, isState> {
@@ -31,14 +35,23 @@ class BasicLayout extends React.Component<Props, isState> {
       count: 0,
       visits: 0,
       permission: false,
+      signalChangeIconColor: '',
     };
+    this.changeIconColor = this.changeIconColor.bind(this);
   }
 
   componentDidMount() {
     this.getLikes();
     this.refreshAccess();
     this.getVisits();
+    setTheme();
     // this.getPermission();
+  }
+
+  changeIconColor(e: any) {
+    this.setState({
+      signalChangeIconColor: e,
+    });
   }
 
   refreshAccess() {
@@ -105,7 +118,10 @@ class BasicLayout extends React.Component<Props, isState> {
 
     return (
       <Layout style={{ backgroundColor: '#00000000' }} key="a">
-        <Headers location={location} />
+        <Headers
+          location={location}
+          signal={this.state.signalChangeIconColor}
+        />
         <Content className={styles.content}>
           <Row>
             <Col span={15} offset={2} style={{ marginRight: '12px' }}>
@@ -175,22 +191,22 @@ class BasicLayout extends React.Component<Props, isState> {
         <Footer className={styles.footer}>
           <p>
             ©2021&nbsp;Violety.cn.&nbsp;&nbsp;&nbsp;由
-            <a href="https://react.docschina.org/" style={{ color: '#dcadff' }}>
+            <Link href="https://react.docschina.org/" className={styles.href}>
               {' '}
               react{' '}
-            </a>
+            </Link>
             +
-            <a
+            <Link
               href="https://docs.djangoproject.com/zh-hans/3.2/"
-              style={{ color: '#dcadff' }}
+              className={styles.href}
             >
               {' '}
               Django{' '}
-            </a>
+            </Link>
             强力驱动.&nbsp;&nbsp; 托管于
-            <a href="https://vercel.com/" style={{ color: '#dcadff' }}>
+            <Link href="https://vercel.com/" className={styles.href}>
               &nbsp;Vercel&nbsp;
-            </a>
+            </Link>
           </p>
           <p>网站已经被访问了&nbsp;{this.state.visits}&nbsp;次</p>
           <div className={styles.divider}></div>
@@ -200,6 +216,7 @@ class BasicLayout extends React.Component<Props, isState> {
           </p>
         </Footer>
         <BackTop style={{ zIndex: 110 }} />
+        <ThemeTool changeIconColorSignal={this.changeIconColor} />
       </Layout>
     );
   }

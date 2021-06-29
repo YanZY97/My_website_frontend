@@ -1,5 +1,14 @@
 import React from 'react';
-import { Comment, Tooltip, Avatar, Popover, Row, Col, Image } from 'antd';
+import {
+  Comment,
+  Tooltip,
+  Avatar,
+  Popover,
+  Row,
+  Col,
+  Image,
+  Typography,
+} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { UserPopover } from './candies/components';
 
@@ -50,7 +59,9 @@ class MessageCard extends React.Component<Props, States> {
 
     const commentContent = (
       <>
-        <p style={{ fontSize: '16px' }}>{data.content}</p>
+        <Typography.Paragraph style={{ fontSize: '16px' }}>
+          {data.content}
+        </Typography.Paragraph>
         <Row gutter={[16, 16]} style={{ marginTop: '16px' }}>
           <Image.PreviewGroup>
             {this.props.data.pictures.map((item: string | undefined) => {

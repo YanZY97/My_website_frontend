@@ -9,6 +9,7 @@ import {
   message,
   Upload,
   Modal,
+  Typography,
 } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { request } from 'umi';
@@ -146,8 +147,8 @@ class MessageEditor extends React.Component<Props, State> {
 
     return (
       <>
-        <div style={{ padding: '2em 4em', backgroundColor: 'white' }}>
-          <h1>发表留言</h1>
+        <div style={{ padding: '2em 4em' }}>
+          <Typography.Title level={3}>发表留言</Typography.Title>
           <Comment
             avatar={<Avatar size={'default'} src={this.props.user.avatar} />}
             content={

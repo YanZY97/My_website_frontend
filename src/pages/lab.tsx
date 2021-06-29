@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card } from 'antd';
-import { history, Link } from 'umi';
+import { Card, Typography } from 'antd';
+import { history } from 'umi';
 
 const { Meta } = Card;
 import QueueAnim from 'rc-queue-anim';
@@ -40,7 +40,9 @@ export default () => {
         }}
         key={1}
       >
-        <h3>*由于本站没有广告，所以这里是猫猫图</h3>
+        <Typography.Title level={5}>
+          *由于本站没有广告，所以这里是猫猫图
+        </Typography.Title>
         <img
           src={'https://thiscatdoesnotexist.com/' + '?ran=' + ran}
           alt=""

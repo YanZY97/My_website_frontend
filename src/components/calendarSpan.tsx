@@ -11,7 +11,7 @@ const CalendarSpan = () => (
     <Calendar
       fullscreen={false}
       onPanelChange={onPanelChange}
-      style={{ backgroundColor: '#ffffff88' }}
+      // style={{ backgroundColor: '#ffffff88' }}
     />
   </div>
 );

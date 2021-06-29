@@ -86,7 +86,7 @@ class Message extends React.Component<ConnectProps, States> {
     ];
     const content = [
       <QueueAnim>
-        <div style={{ backgroundColor: 'white' }} key="1">
+        <div className={styles.background} key="1">
           <QueueAnim>
             <MessageEditor
               handleRefresh={() => {
@@ -96,15 +96,12 @@ class Message extends React.Component<ConnectProps, States> {
               key="1"
             />
             <div className={styles.divider}></div>
-            <div
-              style={{ backgroundColor: 'white', padding: '2em 4em 0' }}
-              key="2"
-            >
+            <div style={{ padding: '2em 4em 0' }} key="2">
               <QueueAnim>
                 {this.state.loaded ? this.state.messageList : skeleton}
               </QueueAnim>
             </div>
-            <div style={{ backgroundColor: 'white', padding: '0em 3em 2em' }}>
+            <div style={{ padding: '0em 3em 2em' }}>
               <Pagination
                 defaultCurrent={1}
                 total={this.state.messageCount}

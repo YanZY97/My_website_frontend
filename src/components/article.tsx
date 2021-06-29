@@ -3,11 +3,11 @@ import { request } from 'umi';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import { Time, Cls, Tags, Feedbacks, CommentCard } from './candies/components';
-import { Avatar, List, Spin } from 'antd';
+import { Avatar, List, Spin, Typography } from 'antd';
 import CommentEditor from './commentEditor';
 
-import 'highlight.js/styles/atom-one-light.css';
-import './styles/github-markdown.css';
+import 'highlight.js/styles/atelier-seaside-dark.css';
+// import './styles/github-markdown.css';
 import style from './styles/article.less';
 
 interface ArticleProps {
@@ -79,11 +79,13 @@ class Title extends React.Component<TitleProps, any> {
     return (
       <>
         <div className={style.titlelayout}>
-          <div className={style.title}>{title}</div>
+          <div className={style.title}>
+            <Typography.Text>{title}</Typography.Text>
+          </div>
           <div className={style.author}>
             <Avatar size={'small'} src={avatar} />
             &nbsp;&nbsp;&nbsp;
-            {author}
+            <Typography.Text>{author}</Typography.Text>
           </div>
           <div style={{ textAlign: 'center' }}>
             <Time time={time} />
@@ -143,7 +145,7 @@ class Content extends React.Component<ContentProps, any> {
       <>
         <div className={style.content}>
           <div
-            className="markdown-body"
+            className={style.markdownbody}
             dangerouslySetInnerHTML={{
               __html: this.renderHTML(this.props.content),
             }}
