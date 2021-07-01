@@ -23,7 +23,7 @@ class UserPopover extends React.Component<Props, any> {
             />
           </Col>
           <Col span={14}>
-            <Typography.Title level={2} style={{ fontWeight: 'bold' }}>{this.props.user}</Typography.Title>
+            <Typography.Title level={4} style={{ fontWeight: 'bold' }}>{this.props.user}</Typography.Title>
             <p style={{ color: '#949494' }}>{this.props.signature}</p>
           </Col>
         </Row>
