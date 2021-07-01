@@ -15,6 +15,7 @@ import { request, history, Link } from 'umi';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { connect, UserModelState, Dispatch } from 'umi';
 import ImgCrop from 'antd-img-crop';
+import styles from './styles/index.less'
 
 interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
   dispatch?: Dispatch;
@@ -206,17 +207,7 @@ class Register extends React.Component<ConnectProps, isState> {
     return (
       <>
         <div
-          style={{
-            width: '450px',
-            padding: '50px 28px',
-            backgroundColor: '#ffffffdd',
-            border: '1px solid #c2c2c2',
-            borderRadius: '8px',
-            margin: '0 auto',
-            position: 'relative',
-            top: '50%',
-            transform: 'translateY(-55%)',
-          }}
+          className={styles.register}
         >
           <Form
             {...formItemLayout}

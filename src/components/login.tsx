@@ -1,9 +1,10 @@
 import React from 'react';
 import { request, history, Link } from 'umi';
-import { Button, Form, Checkbox, Input, message, Divider } from 'antd';
+import { Button, Form, Checkbox, Input, message, Divider, Typography } from 'antd';
 import { FormInstance } from 'antd/lib/form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { connect, UserModelState, Dispatch } from 'umi';
+import styles from './styles/index.less'
 
 interface ConnectProps<P extends { [K in keyof P]?: string } = {}> {
   dispatch?: Dispatch;
@@ -101,34 +102,24 @@ class Login extends React.Component<isProps, isState> {
         ]
       : [
           <div style={{ textAlign: 'center', marginTop: '32px' }}>
-            <a>
+            <Typography.Link>
               <Link to="/reset-password">忘记密码？</Link>
-            </a>
+            </Typography.Link>
             <Divider type="vertical" />
-            <a>
+            <Typography.Link>
               <Link to="/register"> 现在注册 </Link>
-            </a>
+            </Typography.Link>
             <Divider type="vertical" />
-            <a>
+            <Typography.Link>
               <Link to="/"> 返回首页 </Link>
-            </a>
+            </Typography.Link>
           </div>,
         ];
 
     return (
       <>
         <div
-          style={{
-            width: '350px',
-            padding: '50px 28px 12px',
-            backgroundColor: '#ffffffdd',
-            border: '1px solid #c2c2c2',
-            borderRadius: '8px',
-            margin: '0 auto',
-            position: 'relative',
-            top: '36%',
-            transform: 'translateY(-50%)',
-          }}
+          className={styles.login}
         >
           <Form
             name="login"
