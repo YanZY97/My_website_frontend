@@ -13,3 +13,4 @@ export { default as UserDetail } from './userDetail';
 export { default as Headers } from './headers';
 export { default as PartnerLinks } from './partnerLinks';
 export { default as ThemeTool } from './themeTool';
+export { default as ChatClient } from './echoChat/chatClient'
